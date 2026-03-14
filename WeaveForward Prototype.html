@@ -556,7 +556,7 @@ Hide
 
 <div id="map-modal" class="map-modal-overlay hidden"><div class="map-modal"><button class="map-close" onclick="closeMapPicker()">×</button><div class="map-modal-title"><svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 Pick on Map
-</div><div class="map-modal-sub">Click anywhere or drag the marker to set your pickup location.</div><div id="picker-map"></div><button class="btn btn-primary btn-full" style="margin-top:14px;border-radius:30px;padding:13px" onclick="confirmMapPicker()">Confirm Location</button></div></div><div id="generic-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-msg" id="generic-modal-msg"></div><div class="modal-btns" id="generic-modal-btns"></div></div></div><div id="twofa-modal" class="modal-overlay hidden"><div style="background:#fff;border-radius:20px;padding:36px 40px 32px;width:480px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.22)"><h3 class="_modal-ttl">Set Up Two-Factor Authentication</h3><p class="_modal-sub">Enter the secret key in an authenticatior, then enter the TOTP to confirm.</p><div style="background:#fef7ea;border:1.5px solid #f5d898;border-radius:12px;padding:15px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#e8a020;text-align:center;letter-spacing:.5px;margin-bottom:18px;word-break:break-all;">KZMFQ2LONRUXG5DFMZTWQ3LQN5ZXIYQK</div><input id="totp-input" class="form-input form-input-sq" type="password" placeholder="● ● ● ● ● ●" class="form-input form-input-sq _totp"/><div style="display:flex;gap:12px;justify-content:flex-end"><button onclick="closeTwoFA()" class="btn btn-outline _cancel-btn">Cancel</button><button class="btn btn-primary" onclick="verifyTwoFA()" style="border-radius:30px;padding:11px 32px;font-size:14px">Verify &amp; Enable</button></div></div></div><script>
+</div><div class="map-modal-sub">Click anywhere or drag the marker to set your pickup location.</div><div id="picker-map"></div><button class="btn btn-primary btn-full" style="margin-top:14px;border-radius:30px;padding:13px" onclick="confirmMapPicker()">Confirm Location</button></div></div><div id="generic-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-msg" id="generic-modal-msg"></div><div class="modal-btns" id="generic-modal-btns"></div></div></div><div id="twofa-modal" class="modal-overlay hidden"><div style="background:#fff;border-radius:20px;padding:36px 40px 32px;width:480px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.22)"><h3 class="_modal-ttl">Set Up Two-Factor Authentication</h3><p class="_modal-sub">Enter the secret key in an authenticatior, then enter the TOTP to confirm.</p><div style="background:#fef7ea;border:1.5px solid #f5d898;border-radius:12px;padding:15px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#e8a020;text-align:center;letter-spacing:.5px;margin-bottom:18px;word-break:break-all;">KZMFQ2LONRUXG5DFMZTWQ3LQN5ZXIYQK</div><input id="totp-input" class="form-input form-input-sq" type="password" placeholder="● ● ● ● ● ●" class="form-input form-input-sq _totp"/><div style="display:flex;gap:12px;justify-content:flex-end"><button onclick="closeTwoFA()" class="btn btn-outline _cancel-btn">Cancel</button><button class="btn btn-primary" onclick="verifyTwoFA()" style="border-radius:30px;padding:11px 32px;font-size:14px">Verify &amp; Enable</button></div></div></div><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 let _NCR_GEOJSON = null;
 (async function loadNCRGeoJSON() {
   const RAW_URL = 'https://gist.githubusercontent.com/dave34458/0755cbce3485c659971c68246e51aa34/raw/e71c6d71c54c197648f18d3530142b6f7022d85f/ncr_barangays.geojson';
@@ -847,9 +847,9 @@ const imgCell = d.image ? `<img src="${d.image}" style="width:58px;height:58px;o
 const actionBtns = d.status === 'Pending'
 ? `<div class="action-btns"><button class="btn btn-outline" onclick="viewDonation(${d.id})">View</button><button class="btn btn-outline" onclick="editDonation(${d.id})">Edit</button><button class="btn btn-outline" onclick="cancelDonation(${d.id})">Cancel</button></div>`
 : `<div class="action-btns"><button class="btn btn-outline" onclick="viewDonation(${d.id})">View</button></div>`;
-return `<tr><td style="font-weight:600;color:#333">${d.id}</td><td style="white-space:nowrap">${d.pickupDate}</td><td style="white-space:nowrap">${d.timeFrom} –<br>${d.timeTo}</td><td style="max-width:140px">${d.address}</td><td style="max-width:160px">${itemTrunc}</td><td><span class="badge ${badgeCls}">${d.status}</span></td><td>${d.claimedBy||''}</td><td>${actionBtns}</td><td>${imgCell}</td></tr>`;
+return `<tr><td style="white-space:nowrap">${d.pickupDate}</td><td style="white-space:nowrap">${d.timeFrom} –<br>${d.timeTo}</td><td style="max-width:140px">${d.address}</td><td style="max-width:160px">${itemTrunc}</td><td><span class="badge ${badgeCls}">${d.status}</span></td><td>${d.claimedBy||''}</td><td>${actionBtns}</td><td>${imgCell}</td></tr>`;
 }).join('');
-return `<table class="dt"><thead><tr><th>ID</th><th>Pick-Up Date</th><th>Time Window</th><th>Display Address</th><th>Items</th><th>Status</th><th>Claimed By</th><th>Actions</th><th>Uploaded Image</th></tr></thead><tbody>${rows}</tbody></table>`;
+return `<table class="dt"><thead><tr><th>Pick-Up Date</th><th>Time Window</th><th>Display Address</th><th>Items</th><th>Status</th><th>Claimed By</th><th>Actions</th><th>Uploaded Image</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 function filterDonations() {
 const q = document.getElementById('don-search').value.toLowerCase().trim();
@@ -2729,6 +2729,9 @@ tuabClaimDelivery = function(rawId){
                    ||WeaveDB.findOne('donations',r=>r._id===id)?.fullAddress||'',
     scheduledTime:'9:00 AM'
   });
+  const amt = (Math.random() * 150 + 50).toFixed(2);
+  const ref = Math.floor(Math.random() * 9e18 + 1e18).toString();
+  TUAB_PAYMENT_STATE.payments.unshift({ type:'Order Payment', amount:amt, status:'Success', reference:ref, status2:'Success' });
   _syncStateFromDB();
   TUAB_STATE.activeTab='claimed';
   tuabNavigate('dashboard');
@@ -2877,9 +2880,4 @@ function verifyTuabTwoFA(){
     <input id="tuab-totp-input" class="form-input form-input-sq" type="password" placeholder="● ● ● ● ● ●" class="form-input form-input-sq _totp"/>
     <div style="display:flex;gap:12px;justify-content:flex-end">
       <button onclick="closeTuabTwoFA()" class="btn btn-outline _cancel-btn">Cancel</button>
-      <button style="background:#c0410e;color:#fff;border:none;border-radius:30px;padding:11px 32px;font-size:14px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500" onclick="verifyTuabTwoFA()">Verify &amp; Enable</button>
-    </div>
-  </div>
-</div>
-</body>
-</html>
+      <button style="background:#c0410e;color:#fff;border
