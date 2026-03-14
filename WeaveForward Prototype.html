@@ -346,7 +346,7 @@ table.dt tr:last-child td{border-bottom:none}
 </style></head><body><div id="screen-login" class="screen active"><div class="login-bg"></div><div class="login-card"><div class="login-avatar"><svg width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div><div class="login-title">Login</div><div class="form-group"><label class="form-label">Your email</label><input id="login-email" class="form-input" type="email" value="juan.delacruz@gmail.com" placeholder="your@email.com"/></div><div class="form-group"><div class="form-label-row"><span class="form-label">Your password</span><button class="pw-toggle-btn" onclick="togglePw('login-pw','this-icon-eye')"><svg id="this-icon-eye" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
 Hide
 </button></div><input id="login-pw" class="form-input" type="password" value="password123"/></div><div class="login-links" style="flex-direction:column;align-items:flex-end;gap:8px;margin-bottom:22px"><a onclick="showForgot()">Forgot Password</a><a onclick="goToRegister()">Register</a></div><button class="btn btn-blue btn-full" onclick="doLogin()">Log in</button>
-<p style="font-family:'Poppins',sans-serif;font-size:11px;color:#bbb;text-align:center;margin-top:14px">Use <span style="cursor:pointer;color:#c0410e;font-weight:500" onclick="document.getElementById('login-email').value='kk@gmail.com'">kk@gmail.com</span> to log in as TUAB</p></div></div><div id="screen-role" class="screen hidden"><div class="role-bg"></div><div class="role-overlay"></div><div class="role-inner"><div class="role-card" onclick="selectRole('donor')"><img src="https://i.imgur.com/I8EqCQI.png" alt="Donor"/><div class="role-card-title">DONOR</div><div class="role-card-desc">Donate garments or textiles and track their reuse by artisan businesses.</div></div><div class="role-card tuab" onclick="selectRole('tuab')"><img src="https://i.imgur.com/j8SYdR5.png" alt="TUAB"/><div class="role-card-title">TUAB</div><div class="role-card-desc">Operate a textile upcycling business and receive matched textile donations for reuse.</div></div></div></div><div id="screen-register" class="screen hidden"><div class="register-left" style="background-image:url('https://i.imgur.com/EDEi62t.jpeg');background-size:cover;background-position:center"></div><div class="register-right"><div class="register-form-wrap"><div id="reg-role-title" class="register-title">DONOR</div><div class="register-subtitle">Personal Information</div><div id="reg-step1"><div class="grid-3" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">First Name</label><input id="reg-fn" class="form-input form-input-sq" placeholder="First Name"/></div><div class="field-group"><label class="form-label-upper">Middle Name</label><input id="reg-mn" class="form-input form-input-sq" placeholder="Middle"/></div><div class="field-group"><label class="form-label-upper">Last Name</label><input id="reg-ln" class="form-input form-input-sq" placeholder="Last Name"/></div></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Email Address</label><input id="reg-email" class="form-input form-input-sq" type="email" placeholder="email@example.com"/></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Phone Number</label><div class="phone-row"><input class="form-input form-input-sq" value="+63" readonly/><input id="reg-phone" class="form-input form-input-sq" placeholder="9150814395"/></div></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Password</label><input id="reg-pw" class="form-input form-input-sq" type="password" placeholder="Password"/></div><div class="field-group" style="margin-bottom:8px"><label class="form-label-upper">Confirm Password</label><input id="reg-cpw" class="form-input form-input-sq" type="password" placeholder="Confirm Password"/></div></div><div id="reg-step2" class="hidden"><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Pickup Address</label><div class="ac-wrap"><div class="loc-input-wrap"><input id="reg-address" class="form-input form-input-sq" placeholder="Start typing address..." oninput="nominatimSearch(this.value,'reg-ac','reg-lat','reg-lng','reg-address')"/><button class="loc-pin-btn" onclick="openPickerFor('reg-address','reg-lat','reg-lng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button></div><div id="reg-ac" class="address-autocomplete hidden"></div></div></div><input type="hidden" id="reg-lat" value="14.5890"/><input type="hidden" id="reg-lng" value="120.9822"/><div class="grid-2" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">City</label><input id="reg-city" class="form-input form-input-sq" placeholder="City"/></div><div class="field-group"><label class="form-label-upper">Barangay</label><input id="reg-barangay" class="form-input form-input-sq" placeholder="Barangay"/></div></div><div class="field-group" style="margin-bottom:8px"><label class="form-label-upper">Postal Code</label><input id="reg-postal" class="form-input form-input-sq" placeholder="1000"/></div><button class="btn btn-green btn-full" style="margin-top:22px;margin-bottom:10px" onclick="doRegister()">Register</button></div><div class="step-nav"><button class="step-btn" id="reg-back-btn" onclick="regBack()"><svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button><div style="display:flex;gap:8px"><div id="dot1" class="step-dot" style="background:var(--green)"></div><div id="dot2" class="step-dot" style="background:#ccc"></div></div><button class="step-btn" id="reg-next-btn" onclick="regNext()"><svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button></div></div></div></div><div id="screen-app" class="screen hidden"><div class="sidebar"><div class="sidebar-logo"><div class="sidebar-logo-icon" style="background:none;padding:0;overflow:hidden"><img src="https://i.imgur.com/Dg9FmRA.png" style="width:36px;height:36px;object-fit:contain;display:block"/></div><span class="sidebar-logo-text pixel">WeaveForward</span></div><div class="sidebar-nav"><div class="sidebar-item" id="nav-browse" onclick="navigate('browse')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Browse Businesses</span></div><div class="sidebar-item" id="nav-donations" onclick="navigate('donations')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg><span>My Donations</span></div><div class="sidebar-item" id="nav-dashboard" onclick="navigate('dashboard')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span>Donation Impact Dashboard</span></div></div><div class="sidebar-bottom"><div class="sidebar-item" id="nav-profile" onclick="navigate('profile')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Account Profile</span></div><div class="sidebar-item" onclick="doLogout()"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span>Logout</span></div></div></div><div class="main-area"><div class="topbar"><div class="topbar-left" id="topbar-left"><span class="topbar-title pixel" id="page-title">Browse Businesses</span></div><div id="topbar-avatar" class="avatar-chip">JDC</div></div><div class="content" id="main-content"></div></div></div>
+<p style="font-family:'Poppins',sans-serif;font-size:11px;color:#bbb;text-align:center;margin-top:14px">Use <span style="cursor:pointer;color:#c0410e;font-weight:500" onclick="document.getElementById('login-email').value='kk@gmail.com'"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3d56567d5a505c5451135e5250">[email&#160;protected]</a></span> to log in as TUAB</p></div></div><div id="screen-role" class="screen hidden"><div class="role-bg"></div><div class="role-overlay"></div><div class="role-inner"><div class="role-card" onclick="selectRole('donor')"><img src="https://i.imgur.com/I8EqCQI.png" alt="Donor"/><div class="role-card-title">DONOR</div><div class="role-card-desc">Donate garments or textiles and track their reuse by artisan businesses.</div></div><div class="role-card tuab" onclick="selectRole('tuab')"><img src="https://i.imgur.com/j8SYdR5.png" alt="TUAB"/><div class="role-card-title">TUAB</div><div class="role-card-desc">Operate a textile upcycling business and receive matched textile donations for reuse.</div></div></div></div><div id="screen-register" class="screen hidden"><div class="register-left" style="background-image:url('https://i.imgur.com/EDEi62t.jpeg');background-size:cover;background-position:center"></div><div class="register-right"><div class="register-form-wrap"><div id="reg-role-title" class="register-title">DONOR</div><div class="register-subtitle">Personal Information</div><div id="reg-step1"><div class="grid-3" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">First Name</label><input id="reg-fn" class="form-input form-input-sq" placeholder="First Name"/></div><div class="field-group"><label class="form-label-upper">Middle Name</label><input id="reg-mn" class="form-input form-input-sq" placeholder="Middle"/></div><div class="field-group"><label class="form-label-upper">Last Name</label><input id="reg-ln" class="form-input form-input-sq" placeholder="Last Name"/></div></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Email Address</label><input id="reg-email" class="form-input form-input-sq" type="email" placeholder="email@example.com"/></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Phone Number</label><div class="phone-row"><input class="form-input form-input-sq" value="+63" readonly/><input id="reg-phone" class="form-input form-input-sq" placeholder="9150814395"/></div></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Password</label><input id="reg-pw" class="form-input form-input-sq" type="password" placeholder="Password"/></div><div class="field-group" style="margin-bottom:8px"><label class="form-label-upper">Confirm Password</label><input id="reg-cpw" class="form-input form-input-sq" type="password" placeholder="Confirm Password"/></div></div><div id="reg-step2" class="hidden"><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Pickup Address</label><div class="ac-wrap"><div class="loc-input-wrap"><input id="reg-address" class="form-input form-input-sq" placeholder="Start typing address..." oninput="nominatimSearch(this.value,'reg-ac','reg-lat','reg-lng','reg-address')"/><button class="loc-pin-btn" onclick="openPickerFor('reg-address','reg-lat','reg-lng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button></div><div id="reg-ac" class="address-autocomplete hidden"></div></div></div><input type="hidden" id="reg-lat" value="14.5890"/><input type="hidden" id="reg-lng" value="120.9822"/><div class="grid-2" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">City</label><input id="reg-city" class="form-input form-input-sq" placeholder="City"/></div><div class="field-group"><label class="form-label-upper">Barangay</label><input id="reg-barangay" class="form-input form-input-sq" placeholder="Barangay"/></div></div><div class="field-group" style="margin-bottom:8px"><label class="form-label-upper">Postal Code</label><input id="reg-postal" class="form-input form-input-sq" placeholder="1000"/></div><button class="btn btn-green btn-full" style="margin-top:22px;margin-bottom:10px" onclick="doRegister()">Register</button></div><div class="step-nav"><button class="step-btn" id="reg-back-btn" onclick="regBack()"><svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button><div style="display:flex;gap:8px"><div id="dot1" class="step-dot" style="background:var(--green)"></div><div id="dot2" class="step-dot" style="background:#ccc"></div></div><button class="step-btn" id="reg-next-btn" onclick="regNext()"><svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button></div></div></div></div><div id="screen-app" class="screen hidden"><div class="sidebar"><div class="sidebar-logo"><div class="sidebar-logo-icon" style="background:none;padding:0;overflow:hidden"><img src="https://i.imgur.com/Dg9FmRA.png" style="width:36px;height:36px;object-fit:contain;display:block"/></div><span class="sidebar-logo-text pixel">WeaveForward</span></div><div class="sidebar-nav"><div class="sidebar-item" id="nav-browse" onclick="navigate('browse')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Browse Businesses</span></div><div class="sidebar-item" id="nav-donations" onclick="navigate('donations')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg><span>My Donations</span></div><div class="sidebar-item" id="nav-dashboard" onclick="navigate('dashboard')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span>Donation Impact Dashboard</span></div></div><div class="sidebar-bottom"><div class="sidebar-item" id="nav-profile" onclick="navigate('profile')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Account Profile</span></div><div class="sidebar-item" onclick="doLogout()"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span>Logout</span></div></div></div><div class="main-area"><div class="topbar"><div class="topbar-left" id="topbar-left"><span class="topbar-title pixel" id="page-title">Browse Businesses</span></div><div id="topbar-avatar" class="avatar-chip">JDC</div></div><div class="content" id="main-content"></div></div></div>
 <!-- ══ TUAB REGISTRATION SCREEN ════════════════════════════ -->
 <div id="screen-tuab-register" class="screen hidden">
   <div class="tuab-reg-left">
@@ -556,7 +556,7 @@ Hide
 
 <div id="map-modal" class="map-modal-overlay hidden"><div class="map-modal"><button class="map-close" onclick="closeMapPicker()">×</button><div class="map-modal-title"><svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 Pick on Map
-</div><div class="map-modal-sub">Click anywhere or drag the marker to set your pickup location.</div><div id="picker-map"></div><button class="btn btn-primary btn-full" style="margin-top:14px;border-radius:30px;padding:13px" onclick="confirmMapPicker()">Confirm Location</button></div></div><div id="generic-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-msg" id="generic-modal-msg"></div><div class="modal-btns" id="generic-modal-btns"></div></div></div><div id="twofa-modal" class="modal-overlay hidden"><div style="background:#fff;border-radius:20px;padding:36px 40px 32px;width:480px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.22)"><h3 class="_modal-ttl">Set Up Two-Factor Authentication</h3><p class="_modal-sub">Enter the secret key in an authenticatior, then enter the TOTP to confirm.</p><div style="background:#fef7ea;border:1.5px solid #f5d898;border-radius:12px;padding:15px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#e8a020;text-align:center;letter-spacing:.5px;margin-bottom:18px;word-break:break-all;">KZMFQ2LONRUXG5DFMZTWQ3LQN5ZXIYQK</div><input id="totp-input" class="form-input form-input-sq" type="password" placeholder="● ● ● ● ● ●" class="form-input form-input-sq _totp"/><div style="display:flex;gap:12px;justify-content:flex-end"><button onclick="closeTwoFA()" class="btn btn-outline _cancel-btn">Cancel</button><button class="btn btn-primary" onclick="verifyTwoFA()" style="border-radius:30px;padding:11px 32px;font-size:14px">Verify &amp; Enable</button></div></div></div><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+</div><div class="map-modal-sub">Click anywhere or drag the marker to set your pickup location.</div><div id="picker-map"></div><button class="btn btn-primary btn-full" style="margin-top:14px;border-radius:30px;padding:13px" onclick="confirmMapPicker()">Confirm Location</button></div></div><div id="generic-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-msg" id="generic-modal-msg"></div><div class="modal-btns" id="generic-modal-btns"></div></div></div><div id="twofa-modal" class="modal-overlay hidden"><div style="background:#fff;border-radius:20px;padding:36px 40px 32px;width:440px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.22)"><h3 class="_modal-ttl">Enable Two-Factor Authentication</h3><p class="_modal-sub" style="margin-bottom:24px">Two-factor authentication will be enabled for your account. Click confirm to proceed.</p><div style="background:#fef7ea;border:1.5px solid #f5d898;border-radius:12px;padding:15px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#e8a020;text-align:center;letter-spacing:.5px;margin-bottom:24px;word-break:break-all;">KZMFQ2LONRUXG5DFMZTWQ3LQN5ZXIYQK</div><div style="display:flex;gap:12px;justify-content:flex-end"><button onclick="cancelTwoFA()" class="btn btn-outline _cancel-btn">Cancel</button><button class="btn btn-primary" onclick="verifyTwoFA()" style="border-radius:30px;padding:11px 32px;font-size:14px">Verify &amp; Enable</button></div></div></div><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 let _NCR_GEOJSON = null;
 (async function loadNCRGeoJSON() {
   const RAW_URL = 'https://gist.githubusercontent.com/dave34458/0755cbce3485c659971c68246e51aa34/raw/e71c6d71c54c197648f18d3530142b6f7022d85f/ncr_barangays.geojson';
@@ -598,7 +598,7 @@ items:[{type:'Jacket',weight:1.1,condition:'Good',brand:'H&M Cotton'},{type:'Jea
 status:'Received', claimedBy:'RIOtaso', image:'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=300&q=70', lat:14.5378, lng:121.0014 }
 ],
 businesses: [
-{ id:1, name:'KulturaKalikasan', barangay:'Pinyahan', city:'Quezon City',
+{ id:1, name:'KulturaKalikasan', email:'kk@gmail.com', barangay:'Pinyahan', city:'Quezon City',
 address:'V. Luna Road, Pinyahan, Diliman, 4th District, Quezon City, Eastern Manila District, Metro Manila, 1100, Philippines',
 contact:'+639150814395', tags:['denim','cotton'], distance:1.2,
 description:'Kultura Kalikasan is a Filipino sustainability initiative dedicated to promoting environmental stewardship through culture-based community action. Rooted in the belief that ecological responsibility and cultural identity are deeply interconnected, it advances programs that integrate environmental protection, heritage preservation, and grassroots empowerment.',
@@ -758,6 +758,7 @@ case 'edit-profile': renderEditProfile(c); break;
 // BROWSE BUSINESSES
 // ═══════════════════════════════════════════════════════════
 function renderBrowse(c) {
+_syncStateFromDB();
 c.style.padding = '';
 c.style.overflow = '';
 let html = '';
@@ -1148,46 +1149,116 @@ ${u.email}
 </div><div class="profile-chips"><span class="chip-outline">donor</span><span class="chip-filled">Active</span><span class="chip-grey">Member since March 26 2025</span></div></div><button class="btn btn-primary btn-primary-sq" onclick="navigate('edit-profile')">Update Account Information</button></div></div><div class="card" style="margin-bottom:16px"><div class="card-title">Personal Information</div><div class="grid-2"><div><label class="form-label-upper">First Name</label><p class="_p14mt">${u.firstName}</p></div><div><label class="form-label-upper">Middle Name</label><p class="_p14mt">${u.middleName||'—'}</p></div><div><label class="form-label-upper">Last Name</label><p class="_p14mt">${u.lastName}</p></div><div><label class="form-label-upper">Phone Number</label><p class="_p14mt">${u.phone}</p></div></div></div><div class="card"><div class="card-title">Address</div><div class="grid-2" style="margin-bottom:10px"><div><label class="form-label-upper">Barangay</label><p class="_p14mt">${u.barangay}</p></div><div><label class="form-label-upper">City</label><p class="_p14mt">${u.city}</p></div></div><div><label class="form-label-upper">Display Address</label><p style="font-family:'Poppins',sans-serif;font-size:13px;color:#555;line-height:1.6;margin-top:4px">${u.pickupAddress}</p></div></div>`;
 }
 function renderEditProfile(c) {
+  _donor2FAStaged = null;
+  _donor2FASaveAfterVerify = false;
 const u = STATE.user;
 c.innerHTML = `
 <div class="card" style="margin-bottom:16px"><div class="card-title">Profile Photo</div><div style="display:flex;align-items:center;gap:14px"><div class="profile-avatar-lg">${u.firstName[0]}${u.lastName[0]}</div><button class="choose-file-btn">Choose file</button></div></div><div class="card"><div class="card-title">Personal Information</div><div class="grid-2" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">First Name</label><input class="form-input form-input-sq" id="ep-fn" value="${u.firstName}"/></div><div class="field-group"><label class="form-label-upper">Middle Name</label><input class="form-input form-input-sq" id="ep-mn" value="${u.middleName||''}"/></div><div class="field-group"><label class="form-label-upper">Last Name</label><input class="form-input form-input-sq" id="ep-ln" value="${u.lastName}"/></div><div class="field-group"><label class="form-label-upper">Contact Number</label><div style="display:grid;grid-template-columns:60px 1fr;gap:8px"><input class="form-input form-input-sq" value="+63" readonly/><input class="form-input form-input-sq" id="ep-phone" value="${u.phone.replace('+63','')}"/></div></div></div><div class="grid-2" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">Barangay</label><input class="form-input form-input-sq" id="ep-bar" value="${u.barangay}"/></div><div class="field-group"><label class="form-label-upper">City</label><input class="form-input form-input-sq" id="ep-city" value="${u.city}"/></div></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Pickup Address</label><div class="ac-wrap"><div class="loc-input-wrap"><input class="form-input form-input-sq" id="ep-addr" value="${u.pickupAddress}" oninput="nominatimSearch(this.value,'ep-ac','ep-lat','ep-lng','ep-addr')" style="padding-right:36px"/><button class="loc-pin-btn" onclick="openPickerFor('ep-addr','ep-lat','ep-lng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button></div><div id="ep-ac" class="address-autocomplete hidden"></div><input type="hidden" id="ep-lat" value="${u.lat}"/><input type="hidden" id="ep-lng" value="${u.lng}"/></div></div><div class="grid-2" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">New Password (leave blank to keep current)</label><input class="form-input form-input-sq" type="password" id="ep-pw"/></div><div class="field-group"><label class="form-label-upper">Confirm Password</label><input class="form-input form-input-sq" type="password" id="ep-cpw"/></div></div><div class="toggle-row" style="margin-bottom:20px"><div class="toggle${u.twoFA?'':' off'}" id="twofa-toggle" onclick="toggle2FA()"><div class="toggle-knob"></div></div><span style="font-family:'Poppins',sans-serif;font-size:14px">Two-Factor Authentication</span></div><div style="display:flex;gap:12px"><button class="btn btn-primary btn-primary-sq" onclick="saveProfile()">Save Changes</button><button class="btn btn-outline" onclick="navigate('profile')">Cancel</button></div></div>`;
 }
+function _commitDonorProfile() {
+  // Commit 2FA state
+  const emailD = STATE.user.email || 'juan.delacruz@gmail.com';
+  const userRecD = WeaveDB.findOne('users', u=>u.email===emailD);
+  if (_donor2FAStaged === true) {
+    if (userRecD) WeaveDB.update('users', userRecD._id, {twoFA:true});
+    STATE.user.twoFA = true;
+  } else if (_donor2FAStaged === false) {
+    if (userRecD) WeaveDB.update('users', userRecD._id, {twoFA:false});
+    STATE.user.twoFA = false;
+  }
+  _donor2FAStaged = null;
+  _donor2FASaveAfterVerify = false;
+  // Update donorName on all this donor's WeaveDB donation records
+  const newFullName = STATE.user.firstName + ' ' + STATE.user.lastName;
+  WeaveDB.all('donations')
+    .filter(d => d.donorEmail === emailD)
+    .forEach(d => WeaveDB.update('donations', d._id, {donorName: newFullName}));
+  // Re-sync TUAB views so dashboard + fiber match see the updated name
+  _syncStateFromDB();
+  const tog = document.getElementById('twofa-toggle');
+  if (tog) { tog.classList.toggle('off', !STATE.user.twoFA); }
+  document.getElementById('topbar-avatar').textContent = STATE.user.firstName[0]+STATE.user.lastName[0];
+  navigate('profile');
+}
+
 function saveProfile() {
-const u = STATE.user;
-u.firstName = document.getElementById('ep-fn').value;
-u.middleName = document.getElementById('ep-mn').value;
-u.lastName = document.getElementById('ep-ln').value;
-u.phone = '+63' + document.getElementById('ep-phone').value;
-u.barangay = document.getElementById('ep-bar').value;
-u.city = document.getElementById('ep-city').value;
-u.pickupAddress = document.getElementById('ep-addr').value;
-const lat = parseFloat(document.getElementById('ep-lat').value);
-const lng = parseFloat(document.getElementById('ep-lng').value);
-if (!isNaN(lat)) u.lat = lat;
-if (!isNaN(lng)) u.lng = lng;
-document.getElementById('topbar-avatar').textContent = u.firstName[0]+u.lastName[0];
-navigate('profile');
+  const u = STATE.user;
+  u.firstName = document.getElementById('ep-fn').value;
+  u.middleName = document.getElementById('ep-mn').value;
+  u.lastName = document.getElementById('ep-ln').value;
+  u.phone = '+63' + document.getElementById('ep-phone').value;
+  u.barangay = document.getElementById('ep-bar').value;
+  u.city = document.getElementById('ep-city').value;
+  u.pickupAddress = document.getElementById('ep-addr').value;
+  const lat = parseFloat(document.getElementById('ep-lat').value);
+  const lng = parseFloat(document.getElementById('ep-lng').value);
+  if (!isNaN(lat)) u.lat = lat;
+  if (!isNaN(lng)) u.lng = lng;
+  // If 2FA being turned ON, show modal — commit happens after Verify & Enable
+  if (_donor2FAStaged === true) {
+    _donor2FASaveAfterVerify = true;
+    openTwoFA();
+    return;
+  }
+  _commitDonorProfile();
 }
+let _donor2FASaveAfterVerify = false;
+let _donor2FAStaged = null;
 function toggle2FA() {
-const tog = document.getElementById('twofa-toggle');
-if (STATE.user.twoFA) {
-STATE.user.twoFA = false;
-tog.classList.add('off');
-} else {
-openTwoFA();
-}
+  const tog = document.getElementById('twofa-toggle');
+  if (STATE.user.twoFA) {
+    // Visually turn off, stage the change
+    _donor2FAStaged = false;
+    tog.classList.add('off');
+  } else {
+    // Visually turn on, stage — modal shown on Save
+    _donor2FAStaged = true;
+    tog.classList.remove('off');
+  }
 }
 function openTwoFA() {
 document.getElementById('twofa-modal').classList.remove('hidden');
 }
 function closeTwoFA() {
-document.getElementById('twofa-modal').classList.add('hidden');
+  // Only hides the modal — does NOT reset save-after-verify flags
+  // so verifyTwoFA can still read them after calling closeTwoFA()
+  document.getElementById('twofa-modal').classList.add('hidden');
+}
+function cancelTwoFA() {
+  // User pressed Cancel — reset staged flags and visual toggle
+  if (typeof _tuab2FASaveAfterVerify !== 'undefined' && _tuab2FASaveAfterVerify) {
+    _tuab2FASaveAfterVerify = false;
+    _tuab2FAStaged = null;
+    // revert TUAB toggle visually
+    const togT = document.getElementById('tpe-2fa-toggle');
+    const wasOn = TUAB_USER.twoFA;
+    if (togT) {
+      togT.style.background = wasOn ? '#e8a020' : '#ccc';
+      const k = togT.querySelector('div');
+      if (k) { k.style.right = wasOn ? '3px' : ''; k.style.left = wasOn ? '' : '3px'; }
+    }
+  }
+  if (typeof _donor2FASaveAfterVerify !== 'undefined' && _donor2FASaveAfterVerify) {
+    _donor2FASaveAfterVerify = false;
+    _donor2FAStaged = null;
+    // revert donor toggle visually
+    const togD = document.getElementById('twofa-toggle');
+    if (togD) { STATE.user.twoFA ? togD.classList.remove('off') : togD.classList.add('off'); }
+  }
+  document.getElementById('twofa-modal').classList.add('hidden');
 }
 function verifyTwoFA() {
-STATE.user.twoFA = true;
-const tog = document.getElementById('twofa-toggle');
-if (tog) tog.classList.remove('off');
-closeTwoFA();
+  closeTwoFA();
+  if (typeof _tuab2FASaveAfterVerify !== 'undefined' && _tuab2FASaveAfterVerify) {
+    _tuab2FASaveAfterVerify = false;
+    _commitTuabProfile();
+    return;
+  }
+  if (typeof _donor2FASaveAfterVerify !== 'undefined' && _donor2FASaveAfterVerify) {
+    _donor2FASaveAfterVerify = false;
+    _commitDonorProfile();
+    return;
+  }
 }
 // ═══════════════════════════════════════════════════════════
 // NOMINATIM AUTOCOMPLETE
@@ -1835,16 +1906,66 @@ ADDRESS_FIELD_MAP['tuab-address'] = { city:'tuab-city', barangay:'tuab-barangay'
 // ═══════════════════════════════════════════════════════════
 // FIBER-MATCH RECOMMENDATIONS
 // ═══════════════════════════════════════════════════════════
-const FIBER_MATCHES = [
-  { id:1, name:'Juan Dela Cruz',  brgy:'Brgy. 175, Parañaque', dist:'2.1 km', fiber:'Denim',     weight:'12.4 kg', bio:'High (82%)', score:94, lat:14.479, lng:121.016 },
-  { id:2, name:'Maria Santos',    brgy:'Brgy. 183, Las Piñas', dist:'3.4 km', fiber:'Denim',     weight:'8.2 kg',  bio:'High (78%)', score:90, lat:14.449, lng:121.003 },
-  { id:3, name:'Carlos Reyes',    brgy:'Brgy. 201, Makati',    dist:'5.8 km', fiber:'Cotton',    weight:'15.0 kg', bio:'Mid (61%)',  score:84, lat:14.556, lng:121.019 },
-  { id:4, name:'Angela Lim',      brgy:'Brgy. 092, Muntinlupa',dist:'7.2 km', fiber:'Denim',     weight:'6.7 kg',  bio:'Mid (55%)',  score:80, lat:14.409, lng:121.040 },
-  { id:5, name:'Ramon Torres',    brgy:'Brgy. 155, Pasay',     dist:'9.1 km', fiber:'Linen',     weight:'9.3 kg',  bio:'High (90%)',  score:74, lat:14.537, lng:121.001 },
-  { id:6, name:'Liza Bautista',   brgy:'Brgy. 044, Quezon City',dist:'4.5 km',fiber:'Wool',      weight:'5.1 kg',  bio:'Mid (68%)',  score:70, lat:14.650, lng:121.049 },
-  { id:7, name:'Dante Cruz',      brgy:'Brgy. 110, Marikina',  dist:'6.3 km', fiber:'Cotton',    weight:'11.2 kg', bio:'High (85%)', score:67, lat:14.651, lng:121.106 },
-  { id:8, name:'Sofia Reyes',     brgy:'Brgy. 033, Manila',    dist:'8.0 km', fiber:'Silk',      weight:'3.9 kg',  bio:'Low (38%)',  score:61, lat:14.595, lng:120.978 },
-];
+// FIBER_MATCHES is now derived live from WeaveDB pending donations
+function getFiberMatches() {
+  const tuabLat = TUAB_USER.lat || 14.6335;
+  const tuabLng = TUAB_USER.lng || 121.0437;
+
+  // Material → fiber category mapping
+  const matToFiber = {
+    'Cotton':'Cotton','Denim':'Denim','Linen':'Linen','Wool':'Wool',
+    'Silk':'Silk','Polyester':'Polyester','Rayon':'Polyester','Nylon':'Polyester'
+  };
+  // Biodegradability by fiber
+  const bioScore = {
+    'Linen':90,'Cotton':82,'Wool':78,'Silk':61,'Denim':55,'Polyester':38,'Other':45
+  };
+  const bioLabel = s => s >= 70 ? `High (${s}%)` : s >= 50 ? `Mid (${s}%)` : `Low (${s}%)`;
+
+  // Haversine distance in km
+  function distKm(lat1,lng1,lat2,lng2) {
+    const R=6371, dLat=(lat2-lat1)*Math.PI/180, dLng=(lng2-lng1)*Math.PI/180;
+    const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+    return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+  }
+
+  const pending = WeaveDB.all('donations').filter(d => d.status === 'Pending' && d.lat && d.lng);
+
+  return pending.map((d, i) => {
+    // Dominant fiber from items
+    const fiberCount = {};
+    let totalWeight = 0;
+    (d.items||[]).forEach(item => {
+      const brand = item.brand || '';
+      const mat = Object.keys(matToFiber).find(m => brand.includes(m)) || 'Other';
+      const fiber = matToFiber[mat] || 'Other';
+      fiberCount[fiber] = (fiberCount[fiber]||0) + (item.weight||0);
+      totalWeight += (item.weight||0);
+    });
+    const dominant = Object.keys(fiberCount).sort((a,b)=>fiberCount[b]-fiberCount[a])[0] || 'Cotton';
+    const bio = bioScore[dominant] || 50;
+    const dist = distKm(tuabLat, tuabLng, d.lat, d.lng);
+    // Score: weighted by bio + inverse distance
+    const score = Math.round(Math.min(99, bio * 0.6 + Math.max(0, 30 - dist) * 1.5));
+    // Brgy: extract from address
+    const addrParts = (d.address||'').split(',');
+    const brgy = addrParts.length > 1 ? addrParts.slice(-2,-1)[0].trim() : (addrParts[0]||'').trim();
+
+    return {
+      id: d._id,
+      name: d.donorName || 'Unknown',
+      brgy: brgy,
+      dist: dist.toFixed(1) + ' km',
+      fiber: dominant,
+      weight: totalWeight.toFixed(1) + ' kg',
+      bio: bioLabel(bio),
+      score: score,
+      lat: d.lat,
+      lng: d.lng
+    };
+  }).sort((a,b) => b.score - a.score);
+}
+
 const FIBER_COLORS = { Denim:'#c0410e', Cotton:'#e8a020', Linen:'#4a7c59', Wool:'#9b59b6', Silk:'#3d6fa0', Polyester:'#888' };
 let _fmMap = null, _fmMarkers = {}, _fmStates = {}; // states: null | 'accepted' | 'rejected'
 
@@ -1869,7 +1990,7 @@ function renderFiberMatch(c) {
     _fmMap = L.map('fm-map', { zoomControl:true }).setView([14.560, 121.030], 11);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution:'© OSM' }).addTo(_fmMap);
     _fmMarkers = {};
-    FIBER_MATCHES.forEach(m => {
+    getFiberMatches().forEach(m => {
       const mk = L.marker([m.lat, m.lng]).addTo(_fmMap).bindPopup(`<b>${m.name}</b><br>${m.fiber} · ${m.weight}`);
       _fmMarkers[m.id] = mk;
     });
@@ -1879,7 +2000,7 @@ function renderFiberMatch(c) {
 function renderFmCards() {
   const wrap = document.getElementById('fm-cards');
   if (!wrap) return;
-  wrap.innerHTML = FIBER_MATCHES.map(m => {
+  wrap.innerHTML = getFiberMatches().map(m => {
     const st = _fmStates[m.id];
     const actionBtn = st === 'accepted'
       ? `<button disabled style="background:#4a7c59;color:#fff;border:none;border-radius:20px;padding:6px 18px;font-size:11px;font-family:'Poppins',sans-serif;font-weight:700;letter-spacing:.5px;cursor:default">ACCEPTED</button>`
@@ -2291,7 +2412,7 @@ function renderTuabProfile(c) {
     `<span style="background:#f0e8d8;color:#6b4c2a;border-radius:20px;padding:3px 11px;font-size:12px;font-family:'Poppins',sans-serif;font-weight:500">${f}</span>`
   ).join('');
   c.innerHTML = `
-<div style="background:#fff;border-radius:16px;padding:22px 28px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)"> <div style="display:flex;align-items:center;gap:20px"> <div style="width:70px;height:70px;border-radius:50%;background:#f0e8d8;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;color:#c0410e;flex-shrink:0">KK</div> <div style="flex:1;min-width:0"> <div style="font-family:'Pixelify Sans',sans-serif;font-size:26px;font-weight:700;color:#1a1a1a;margin-bottom:4px">${u.businessName}</div> <div style="display:flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-size:13px;color:#888"> <svg width="13" height="13" fill="none" stroke="#e8a020" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+<div style="background:#fff;border-radius:16px;padding:22px 28px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)"> <div style="display:flex;align-items:center;gap:20px"> <div style="width:70px;height:70px;border-radius:50%;background:#f0e8d8;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;color:#c0410e;flex-shrink:0">${(TUAB_USER.businessName||'KK').split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase()}</div> <div style="flex:1;min-width:0"> <div style="font-family:'Pixelify Sans',sans-serif;font-size:26px;font-weight:700;color:#1a1a1a;margin-bottom:4px">${u.businessName}</div> <div style="display:flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-size:13px;color:#888"> <svg width="13" height="13" fill="none" stroke="#e8a020" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 ${u.barangay}, ${u.city}, ${u.address.split(',').slice(-3,-1).join(',').trim()}
 </div> </div> <button onclick="tuabNavigate('profile-edit')" style="background:#e8a020;color:#fff;border:none;border-radius:8px;padding:10px 18px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:7px;white-space:nowrap;flex-shrink:0"> <svg width="14" height="14" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
 Update Account Information
@@ -2310,6 +2431,9 @@ ${[['Barangay', u.barangay],['City', u.city],['Display Address', u.address],['Co
 function renderTuabProfileEdit(c) {
   const u = TUAB_USER;
   _tuabEditFibers = [...u.targetFibers];
+  _tuab2FAStaged = null;
+  _tuabUnsubscribeStaged = false;
+  _tuab2FASaveAfterVerify = false;
 
   const fiberTagsHTML = () => _tuabEditFibers.map(f =>
     `<span style="display:inline-flex;align-items:center;gap:5px;background:#fff1d8;color:#b8860b;border-radius:20px;padding:3px 10px 3px 12px;font-size:12px;font-family:'Poppins',sans-serif;white-space:nowrap;font-weight:500">
@@ -2318,7 +2442,7 @@ ${f}<span onclick="tuabEditRemoveFiber('${f}')" style="cursor:pointer;font-size:
   c.innerHTML = `
 <div style="background:#fff;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)"> <!-- Profile Photo --> <div style="padding:22px 28px"> <div style="font-family:'Poppins',sans-serif;font-size:13px;color:#888;margin-bottom:14px;font-weight:500">Profile Photo</div> <div style="display:flex;align-items:center;gap:16px"> <div style="width:60px;height:60px;border-radius:50%;background:#f0e8d8;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:#c0410e">KK</div> <button style="border:1.5px solid #ccc;background:#fff;border-radius:20px;padding:6px 18px;font-size:13px;font-family:'Poppins',sans-serif;cursor:pointer;color:#555">Choose file</button> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Personal Information --> <div style="padding:22px 28px"> <div class="_form-sec-hdr">Personal Information</div> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Business Name</label> <input id="tpe-biz" class="form-input form-input-sq" value="${u.businessName}"/> </div> <div class="field-group"> <label class="form-label-upper">Description</label> <input id="tpe-desc" class="form-input form-input-sq" value="${u.description.slice(0,80)}…"/> </div> </div> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Social/Website Link</label> <input id="tpe-web" class="form-input form-input-sq" value="${u.website}"/> </div> <div class="field-group" style="position:relative"> <label class="form-label-upper">Target Fiber Types</label> <div id="tpe-fiber-box" onclick="document.getElementById('tpe-fiber-input').focus()" style="border:1.5px solid var(--border);border-radius:8px;padding:6px 10px;background:#fff;cursor:text;min-height:40px;display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:4px"> <div id="tpe-fiber-tags" style="display:contents">${fiberTagsHTML()}</div> <input id="tpe-fiber-input" placeholder="Add fiber…" autocomplete="off"
 style="border:none;outline:none;font-family:'Poppins',sans-serif;font-size:13px;color:#333;background:transparent;min-width:80px;flex:1;padding:0"
-oninput="tuabEditFiberSearch(this.value)" onkeydown="tuabEditFiberKeydown(event)"/> </div> <div id="tpe-fiber-sug" style="display:none;position:absolute;left:0;right:0;top:calc(100% + 2px);background:#fff;border:1.5px solid var(--border);border-radius:8px;z-index:400;box-shadow:0 8px 24px rgba(0,0,0,.12);max-height:160px;overflow-y:auto"></div> </div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Operational Status row --> <div style="padding:22px 28px"> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Max Distance</label> <input id="tpe-maxkm" class="form-input form-input-sq" type="number" value="${u.maxDistance}"/> </div> <div class="field-group"> <label class="form-label-upper">Operational Status</label> <select id="tpe-status" class="form-select"> <option ${u.operationalStatus==='Active'?'selected':''}>Active</option> <option ${u.operationalStatus==='Inactive'?'selected':''}>Inactive</option> <option ${u.operationalStatus==='On Hold'?'selected':''}>On Hold</option> </select> </div> </div> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Barangay</label> <input id="tpe-brgy" class="form-input form-input-sq" value="${u.barangay}"/> </div> <div class="field-group"> <label class="form-label-upper">City</label> <input id="tpe-city" class="form-input form-input-sq" value="${u.city}"/> </div> </div> <div class="field-group" style="margin-bottom:14px"> <label class="form-label-upper">Address</label> <div class="ac-wrap"><div class="loc-input-wrap"> <input id="tpe-addr" class="form-input form-input-sq" value="${u.address}" oninput="nominatimSearch(this.value,'tpe-ac','tpe-lat','tpe-lng','tpe-addr')" style="padding-right:36px"/> <button class="loc-pin-btn" onclick="openPickerFor('tpe-addr','tpe-lat','tpe-lng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button> </div><div id="tpe-ac" class="address-autocomplete hidden"></div> <input type="hidden" id="tpe-lat" value="${u.lat}"/><input type="hidden" id="tpe-lng" value="${u.lng}"/></div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Contact Number row --> <div style="padding:22px 28px"> <div class="field-group" style="margin-bottom:0"> <label class="form-label-upper">Contact Number</label> <div style="display:grid;grid-template-columns:60px 1fr;gap:8px;margin-top:4px"> <input class="form-input form-input-sq" value="+63" readonly/> <input id="tpe-contact" class="form-input form-input-sq" value="${u.contact}"/> </div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Password + 2FA + Actions --> <div style="padding:22px 28px"> <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px"> <div class="field-group"> <label class="form-label-upper">New Password (leave blank to keep current)</label> <input id="tpe-pw" class="form-input form-input-sq" type="password"/> </div> <div class="field-group"> <label class="form-label-upper">Confirm Password</label> <input id="tpe-cpw" class="form-input form-input-sq" type="password"/> </div> </div> <button onclick="tuabNavigate('profile')" style="background:#fff8e8;border:1.5px solid #f5d898;color:#e8a020;border-radius:8px;padding:11px 22px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer;margin-bottom:16px;width:auto">Unsubscribe from Premium Features</button> <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px"> <div id="tpe-2fa-toggle" onclick="tuabToggle2FA()" style="width:44px;height:24px;border-radius:12px;background:${u.twoFA?'#e8a020':'#ccc'};cursor:pointer;position:relative;transition:background .2s;flex-shrink:0"> <div style="position:absolute;top:3px;${u.twoFA?'right:3px':'left:3px'};width:18px;height:18px;border-radius:50%;background:#fff;transition:all .2s"></div> </div> <span style="font-family:'Poppins',sans-serif;font-size:14px;color:#333">Two-Factor Authentication</span> </div> <button onclick="saveTuabProfile()" style="background:#e8a020;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer">Save Changes</button> </div> </div>`;
+oninput="tuabEditFiberSearch(this.value)" onkeydown="tuabEditFiberKeydown(event)"/> </div> <div id="tpe-fiber-sug" style="display:none;position:absolute;left:0;right:0;top:calc(100% + 2px);background:#fff;border:1.5px solid var(--border);border-radius:8px;z-index:400;box-shadow:0 8px 24px rgba(0,0,0,.12);max-height:160px;overflow-y:auto"></div> </div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Operational Status row --> <div style="padding:22px 28px"> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Max Distance</label> <input id="tpe-maxkm" class="form-input form-input-sq" type="number" value="${u.maxDistance}"/> </div> <div class="field-group"> <label class="form-label-upper">Operational Status</label> <select id="tpe-status" class="form-select"> <option ${u.operationalStatus==='Active'?'selected':''}>Active</option> <option ${u.operationalStatus==='Inactive'?'selected':''}>Inactive</option> <option ${u.operationalStatus==='On Hold'?'selected':''}>On Hold</option> </select> </div> </div> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Barangay</label> <input id="tpe-brgy" class="form-input form-input-sq" value="${u.barangay}"/> </div> <div class="field-group"> <label class="form-label-upper">City</label> <input id="tpe-city" class="form-input form-input-sq" value="${u.city}"/> </div> </div> <div class="field-group" style="margin-bottom:14px"> <label class="form-label-upper">Address</label> <div class="ac-wrap"><div class="loc-input-wrap"> <input id="tpe-addr" class="form-input form-input-sq" value="${u.address}" oninput="nominatimSearch(this.value,'tpe-ac','tpe-lat','tpe-lng','tpe-addr')" style="padding-right:36px"/> <button class="loc-pin-btn" onclick="openPickerFor('tpe-addr','tpe-lat','tpe-lng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button> </div><div id="tpe-ac" class="address-autocomplete hidden"></div> <input type="hidden" id="tpe-lat" value="${u.lat}"/><input type="hidden" id="tpe-lng" value="${u.lng}"/></div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Contact Number row --> <div style="padding:22px 28px"> <div class="field-group" style="margin-bottom:0"> <label class="form-label-upper">Contact Number</label> <div style="display:grid;grid-template-columns:60px 1fr;gap:8px;margin-top:4px"> <input class="form-input form-input-sq" value="+63" readonly/> <input id="tpe-contact" class="form-input form-input-sq" value="${u.contact}"/> </div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Password + 2FA + Actions --> <div style="padding:22px 28px"> <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px"> <div class="field-group"> <label class="form-label-upper">New Password (leave blank to keep current)</label> <input id="tpe-pw" class="form-input form-input-sq" type="password"/> </div> <div class="field-group"> <label class="form-label-upper">Confirm Password</label> <input id="tpe-cpw" class="form-input form-input-sq" type="password"/> </div> </div> <button id="tpe-unsub-btn" onclick="tuabStageUnsubscribe()" style="background:#fff8e8;border:1.5px solid #f5d898;color:#e8a020;border-radius:8px;padding:11px 22px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer;margin-bottom:16px;width:auto">Unsubscribe from Premium Features</button> <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px"> <div id="tpe-2fa-toggle" onclick="tuabToggle2FA()" style="width:44px;height:24px;border-radius:12px;background:${u.twoFA?'#e8a020':'#ccc'};cursor:pointer;position:relative;transition:background .2s;flex-shrink:0"> <div style="position:absolute;top:3px;${u.twoFA?'right:3px':'left:3px'};width:18px;height:18px;border-radius:50%;background:#fff;transition:all .2s"></div> </div> <span style="font-family:'Poppins',sans-serif;font-size:14px;color:#333">Two-Factor Authentication</span> </div> <button onclick="saveTuabProfile()" style="background:#e8a020;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer">Save Changes</button> </div> </div>`;
 
   ADDRESS_FIELD_MAP['tpe-addr'] = { city:'tpe-city', barangay:'tpe-brgy', postal:null };
 }
@@ -2354,19 +2478,70 @@ function refreshTpeTagsHTML() {
     `<span style="display:inline-flex;align-items:center;gap:5px;background:#fff1d8;color:#b8860b;border-radius:20px;padding:3px 10px 3px 12px;font-size:12px;font-family:'Poppins',sans-serif;font-weight:500;white-space:nowrap">
 ${f}<span onclick="tuabEditRemoveFiber('${f}')" style="cursor:pointer;font-size:14px;line-height:1;opacity:.7;margin-left:2px">×</span> </span>`).join('');
 }
+let _tuab2FAStaged = null; // null = no change, true = turning on, false = turning off
 function tuabToggle2FA() {
   const email = 'kk@gmail.com';
   const userRec = WeaveDB.findOne('users', u=>u.email===email);
   const currentlyOn = userRec ? userRec.twoFA : (TUAB_USER.twoFA||false);
   const tog = document.getElementById('tpe-2fa-toggle');
   if(currentlyOn){
-    if(userRec) WeaveDB.update('users',userRec._id,{twoFA:false});
-    TUAB_USER.twoFA = false;
+    // Visually turn off, stage the change
+    _tuab2FAStaged = false;
     if(tog){ tog.style.background='#ccc'; const k=tog.querySelector('div'); if(k){k.style.left='3px';k.style.right='';} }
   } else {
-    openTuabTwoFA();
+    // Visually turn on, stage the change — modal shown on Save
+    _tuab2FAStaged = true;
+    if(tog){ tog.style.background='#e8a020'; const k=tog.querySelector('div'); if(k){k.style.right='3px';k.style.left='';} }
   }
 }
+let _tuab2FASaveAfterVerify = false;
+let _tuabUnsubscribeStaged = false;
+
+function _commitTuabProfile() {
+  // Commit 2FA state to WeaveDB
+  const emailT = TUAB_USER.email || 'kk@gmail.com';
+  const userRecT = WeaveDB.findOne('users', u=>u.email===emailT);
+  if (_tuab2FAStaged === true) {
+    if (userRecT) WeaveDB.update('users', userRecT._id, {twoFA:true});
+    TUAB_USER.twoFA = true;
+  } else if (_tuab2FAStaged === false) {
+    if (userRecT) WeaveDB.update('users', userRecT._id, {twoFA:false});
+    TUAB_USER.twoFA = false;
+  }
+  _tuab2FAStaged = null;
+  _tuab2FASaveAfterVerify = false;
+
+  // Write updated TUAB_USER fields into WeaveDB businesses table
+  // Business id:1 = KulturaKalikasan = the logged-in TUAB user
+  const bizRec = WeaveDB.findOne('businesses', b => b.email === emailT || b._id === 1);
+  if (bizRec) {
+    WeaveDB.update('businesses', bizRec._id, {
+      name:        TUAB_USER.businessName,
+      description: TUAB_USER.description,
+      website:     TUAB_USER.website,
+      barangay:    TUAB_USER.barangay,
+      city:        TUAB_USER.city,
+      address:     TUAB_USER.address,
+      contact:     '+63' + TUAB_USER.contact,
+      lat:         TUAB_USER.lat,
+      lng:         TUAB_USER.lng,
+      maxKm:       TUAB_USER.maxDistance,
+      targetFibers: TUAB_USER.targetFibers.map(f=>f.toLowerCase()),
+      operationalStatus: TUAB_USER.operationalStatus
+    });
+  }
+  // Re-sync so donor's STATE.businesses picks up the changes
+  _syncStateFromDB();
+
+  // Update topbar avatar chip with business name initials
+  const initials = TUAB_USER.businessName
+    ? TUAB_USER.businessName.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase()
+    : 'KK';
+  const avatarChip = document.querySelector('#screen-tuab-app .avatar-chip');
+  if (avatarChip) avatarChip.textContent = initials;
+  tuabNavigate('profile');
+}
+
 function saveTuabProfile() {
   const u = TUAB_USER;
   u.businessName = document.getElementById('tpe-biz').value;
@@ -2383,7 +2558,30 @@ function saveTuabProfile() {
   const pw = document.getElementById('tpe-pw').value;
   const cpw = document.getElementById('tpe-cpw').value;
   if (pw && pw !== cpw) { alert('Passwords do not match.'); return; }
-  tuabNavigate('profile');
+  if (_tuabUnsubscribeStaged) {
+    _tuabUnsubscribeStaged = false;
+  }
+  // If 2FA being turned ON, show modal — commit happens after Verify & Enable
+  if (_tuab2FAStaged === true) {
+    _tuab2FASaveAfterVerify = true;
+    openTwoFA();
+    return;
+  }
+  _commitTuabProfile();
+}
+
+
+function tuabStageUnsubscribe() {
+  _tuabUnsubscribeStaged = true;
+  const btn = document.getElementById('tpe-unsub-btn');
+  if (btn) {
+    btn.textContent = 'Unsubscription staged — will apply on Save';
+    btn.style.background = '#fce8e0';
+    btn.style.borderColor = '#f5c0a0';
+    btn.style.color = '#c0410e';
+    btn.disabled = true;
+    btn.style.cursor = 'default';
+  }
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -2600,6 +2798,7 @@ function _parseDonId(raw) {
   })));
 
   // ── Users ──────────────────────────────────────────────────────────────────
+  WeaveDB.init('businesses', STATE.businesses.map(b => ({...b, _id: b.id})));
   WeaveDB.init('users',[
     {_id:1, email:'juan.delacruz@gmail.com', role:'donor', twoFA:false, twoFASecret:'KZMFQ2LONRUXG5DFMZTWQ3LQN5ZXIYQK'},
     {_id:2, email:'kk@gmail.com',            role:'tuab',  twoFA:false, twoFASecret:'KZMFQ2LONRUXG5DFMZTWQ3LQN5ZXIYQK'},
@@ -2633,6 +2832,12 @@ function _syncStateFromDB(){
   TUAB_STATE.donations.claimed = all
     .filter(d=>d.status==='Claimed')
     .map(d=>_dbDonToTuab(d));
+
+  // Sync businesses: live data so TUAB profile edits reflect in donor browse
+  const bizRows = WeaveDB.all('businesses');
+  if (bizRows.length) {
+    STATE.businesses = bizRows.map(b => ({...b, id: b._id}));
+  }
 
   // Inventory: _id ascending, donationId = same integer PK as donations._id
   INV_STATE.items = WeaveDB.all('inventory')
@@ -2804,8 +3009,6 @@ doLogin = function(){
   _doLoginComplete(email);
 };
 function verifyLoginTwoFA(){
-  const code=(document.getElementById('login-totp-code')?.value||'').trim();
-  if(code.length!==6||!/^\d+$/.test(code)){ alert('Enter a valid 6-digit code.'); return; }
   document.getElementById('login-twofa-modal')?.classList.add('hidden');
   _doLoginComplete(window._pendingLoginEmail||'');
 }
@@ -2826,36 +3029,7 @@ function _doLoginComplete(email){
 }
 
 // ── TUAB 2FA toggle ───────────────────────────────────────────────────────────
-function tuabToggle2FA(){
-  const email = TUAB_USER.email||'kk@gmail.com';
-  const userRec = WeaveDB.findOne('users',u=>u.email===email);
-  const on = userRec ? userRec.twoFA : false;
-  const tog = document.getElementById('tpe-2fa-toggle');
-  if(on){
-    if(userRec) WeaveDB.update('users',userRec._id,{twoFA:false});
-    TUAB_USER.twoFA=false;
-    if(tog){ tog.style.background='#ccc'; const k=tog.querySelector('div'); if(k){k.style.left='3px';k.style.right='';} }
-  } else {
-    openTuabTwoFA();
-  }
-}
-function openTuabTwoFA(){
-  document.getElementById('tuab-twofa-modal')?.classList.remove('hidden');
-}
-function closeTuabTwoFA(){
-  document.getElementById('tuab-twofa-modal')?.classList.add('hidden');
-}
-function verifyTuabTwoFA(){
-  const code=(document.getElementById('tuab-totp-code')?.value||'').trim();
-  if(code.length!==6||!/^\d+$/.test(code)){ alert('Enter a valid 6-digit code.'); return; }
-  const email=TUAB_USER.email||'kk@gmail.com';
-  const userRec=WeaveDB.findOne('users',u=>u.email===email);
-  if(userRec) WeaveDB.update('users',userRec._id,{twoFA:true});
-  TUAB_USER.twoFA=true;
-  const tog=document.getElementById('tpe-2fa-toggle')||document.getElementById('tuab-twofa-toggle');
-  if(tog){ tog.style.background='#e8a020'; const k=tog.querySelector('div'); if(k){k.style.right='3px';k.style.left='';} }
-  closeTuabTwoFA();
-}
+// TUAB 2FA now uses shared Donor modal (twofa-modal) via openTwoFA()/verifyTwoFA()
 
 </script>
 
@@ -2871,13 +3045,4 @@ function verifyTuabTwoFA(){
     </div>
   </div>
 </div>
-<!-- TUAB 2FA Setup Modal -->
-<div id="tuab-twofa-modal" class="modal-overlay hidden">
-  <div style="background:#fff;border-radius:20px;padding:36px 40px 32px;width:480px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.22)">
-    <h3 class="_modal-ttl">Set Up Two-Factor Authentication</h3>
-    <p class="_modal-sub">Enter the secret key in an authenticator app, then enter the TOTP to confirm.</p>
-    <div style="background:#fef7ea;border:1.5px solid #f5d898;border-radius:12px;padding:15px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#e8a020;text-align:center;letter-spacing:.5px;margin-bottom:18px;word-break:break-all;">KZMFQ2LONRUXG5DFMZTWQ3LQN5ZXIYQK</div>
-    <input id="tuab-totp-input" class="form-input form-input-sq" type="password" placeholder="● ● ● ● ● ●" class="form-input form-input-sq _totp"/>
-    <div style="display:flex;gap:12px;justify-content:flex-end">
-      <button onclick="closeTuabTwoFA()" class="btn btn-outline _cancel-btn">Cancel</button>
-      <button style="background:#c0410e;color:#fff;border
+</html>
