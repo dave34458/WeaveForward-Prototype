@@ -33,7 +33,7 @@ Images used in the prototype are **hosted externally** instead of being embedded
 - 2FA prompt shown during login is not functional
 - No admin interface
 - Donation Impact Dashboard and Circular Economy Dashboard records are non existent, rather simulated
-- "View Payment History" does not proceed beyond pressing the **Subscribe for ₱499** button
+- "Subscribe for Premium Features" does not proceed beyond pressing the **Subscribe for ₱499** button
 - Not connected to the ML API
 
 This prototype is intended for **demonstration and interface simulation only**.
