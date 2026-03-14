@@ -1771,7 +1771,7 @@ c.innerHTML = `<div style="display:flex;gap:24px;align-items:flex-start">
 <div style="flex:1;min-width:0">${clothingHTML}</div>
 <div style="width:320px;flex-shrink:0"> <div class="tuab-detail-panel"> <div class="tuab-detail-row"><span class="tuab-detail-label">Donor</span><span class="tuab-detail-val">${d.donor}</span></div> <div class="tuab-detail-row"><span class="tuab-detail-label">Status</span><span class="tuab-detail-val" style="color:#c0410e;font-weight:600">Pending</span></div> <div class="tuab-detail-row"><span class="tuab-detail-label">Is Flagged</span><span class="tuab-detail-val">${d.isFlagged?'True':'False'}</span></div> <div class="tuab-detail-row"><span class="tuab-detail-label">Flag Reason</span><span class="tuab-detail-val">${d.flagReason||'–'}</span></div> <div class="tuab-detail-row"><span class="tuab-detail-label">Submitted At</span><span class="tuab-detail-val">${d.submittedAt}</span></div> <div class="tuab-detail-row"><span class="tuab-detail-label">Updated At</span><span class="tuab-detail-val">–</span></div> <div class="tuab-detail-row"><span class="tuab-detail-label">Auto Archive At</span><span class="tuab-detail-val">${d.autoArchiveAt}</span></div> <div class="tuab-detail-row"><span class="tuab-detail-label">Pickup Address</span><span class="tuab-detail-val">${d.address.substring(0,28)}...</span></div> <div class="tuab-detail-row"><span class="tuab-detail-label">Pickup Preferred Date</span><span class="tuab-detail-val">${d.pickupDate}</span></div> <div class="tuab-detail-row" style="border-bottom:none"><span class="tuab-detail-label">Pickup Preferred Pickup Window</span><span class="tuab-detail-val">${d.timeWindow}</span></div>
 ${imgHTML ? `<div class="_sep">${imgHTML}</div>` : ''}
-<div class="_sep"> <button class="btn-claim-pickup" onclick="tuabClaimPickup('${d.id}')" style="margin-bottom:16px">Claim for Pick-Up</button> <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;margin-bottom:8px">Delivery Location</div> <div class="ac-wrap" style="margin-bottom:14px"> <div class="loc-input-wrap"> <input id="tuab-delivery-addr" class="form-input form-input-sq" value="${d.fullAddress}" style="padding-right:36px;font-size:12px"/> <button class="loc-pin-btn" onclick="openPickerFor('tuab-delivery-addr','tuab-dlat','tuab-dlng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button> </div> <input type="hidden" id="tuab-dlat" value="${d.lat}"/><input type="hidden" id="tuab-dlng" value="${d.lng}"/> </div> <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;margin-bottom:8px">Scheduled Time</div> <div style="position:relative;margin-bottom:14px"> <input id="tuab-sched-time" class="form-input form-input-sq" type="time" value="09:00" style="padding-right:36px"/> <svg style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:#c0a080" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> </div> <button class="btn-claim-pickup" onclick="tuabClaimDelivery('${d.id}')">Claim for Delivery</button> </div> </div>
+<div class="_sep"> <button class="btn-claim-pickup" onclick="tuabClaimPickup('${d.id}')" style="margin-bottom:16px">Claim for Pick-Up</button> <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;margin-bottom:8px">Delivery Location</div> <div class="ac-wrap" style="margin-bottom:14px"> <div class="loc-input-wrap"> <input id="tuab-delivery-addr" class="form-input form-input-sq" value="${d.fullAddress}" style="padding-right:36px;font-size:12px"/> <button class="loc-pin-btn" onclick="openPickerFor('tuab-delivery-addr','tuab-dlat','tuab-dlng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button> </div> <input type="hidden" id="tuab-dlat" value="${d.lat}"/><input type="hidden" id="tuab-dlng" value="${d.lng}"/> </div> <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;margin-bottom:8px">Scheduled Time</div> <div style="position:relative;margin-bottom:14px"> <input id="tuab-sched-time" class="form-input form-input-sq" type="time" value="09:00" style="padding-right:36px"/> <svg style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:#c0a080" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> </div> <button class="btn-claim-pickup" onclick="openDeliveryConfirmModal('${d.id}')">Claim for Delivery</button> </div> </div>
 </div></div>`;
 }
 
@@ -2089,16 +2089,16 @@ function renderInventorySnapshots(c) {
   ) : INV_STATE.items;
 
   const rowsHTML = filtered.map(item => {
-    const statusBg = item.status === 'Active' ? '#e8f5ee' : '#fff7e0';
-    const statusColor = item.status === 'Active' ? '#4a7c59' : '#b07000';
+    const statusBg = item.status === 'Active' ? '#e8f5ee' : item.status === 'Archived' ? '#f0ede8' : '#fff7e0';
+    const statusColor = item.status === 'Active' ? '#4a7c59' : item.status === 'Archived' ? '#999' : '#b07000';
     const barW = Math.round(item.pct * 100);
-    return `<tr> <td class="_td10">${item.id}</td> <td class="_td10">${item.donationId}</td> <td style="padding:13px 10px"> <div style="display:flex;align-items:center;gap:8px"> <div style="flex:1;height:8px;background:#f0ede8;border-radius:4px;min-width:80px"><div style="width:${barW}%;height:100%;background:${item.color};border-radius:4px"></div></div> </div> </td> <td class="_td10">${item.currentWeight} kg</td> <td style="font-family:'Poppins',sans-serif;font-size:13px;color:#666;padding:13px 10px">${item.lastAudit}</td> <td style="padding:13px 10px"><span style="background:${statusBg};color:${statusColor};border-radius:20px;padding:4px 12px;font-size:11px;font-family:'Poppins',sans-serif;font-weight:600;border:1.5px solid ${statusColor}30;display:inline-flex;align-items:center;gap:5px">${item.status === 'Audit Required' ? '<svg width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" viewBox=\"0 0 24 24\"><path d=\"M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\"/><line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"13\"/><line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"/></svg>' : ''}${item.status}</span></td> <td style="padding:13px 10px"> <div style="display:flex;gap:6px"> <button onclick="openUpdateModal(${item.id})" style="background:#fff;color:#333;border:1.5px solid #ddd;border-radius:6px;padding:5px 14px;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500">Update</button> <button onclick="confirmDeleteItem(${item.id})" style="background:#fff;color:#e05050;border:1.5px solid #e05050;border-radius:6px;padding:5px 12px;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500">Delete</button> </div> </td> </tr>`;
+    return `<tr> <td class="_td10">${item.id}</td> <td class="_td10">${item.donationId}</td> <td style="padding:13px 10px"> <div style="display:flex;align-items:center;gap:8px"> <div style="flex:1;height:8px;background:#f0ede8;border-radius:4px;min-width:80px"><div style="width:${barW}%;height:100%;background:#e8a020;border-radius:4px"></div></div> </div> </td> <td class="_td10">${item.currentWeight} kg</td> <td style="font-family:'Poppins',sans-serif;font-size:13px;color:#666;padding:13px 10px">${item.lastAudit}</td> <td style="padding:13px 10px"><span style="background:${statusBg};color:${statusColor};border-radius:20px;padding:4px 12px;font-size:11px;font-family:'Poppins',sans-serif;font-weight:600;border:1.5px solid ${statusColor}30;display:inline-flex;align-items:center;gap:5px">${item.status === 'Audit Required' ? '<svg width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" viewBox=\"0 0 24 24\"><path d=\"M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\"/><line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"13\"/><line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"/></svg>' : ''}${item.status}</span></td> <td style="padding:13px 10px"> <div style="display:flex;gap:6px"> <button onclick="openUpdateModal(${item.id})" style="background:#fff;color:#333;border:1.5px solid #ddd;border-radius:6px;padding:5px 14px;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500">Update</button> <button onclick="confirmDeleteItem(${item.id})" style="background:#fff;color:#e05050;border:1.5px solid #e05050;border-radius:6px;padding:5px 12px;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500">Delete</button> </div> </td> </tr>`;
   }).join('');
 
   c.innerHTML = `
 <div style="padding-bottom:8px"> <!-- Category Summary --> <div style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:flex;align-items:center;gap:8px"> <svg width="13" height="13" fill="none" stroke="#aaa" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/></svg>
 Category Summary
-</div> <div style="display:flex;gap:14px;margin-bottom:18px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:#e8a020 #f0ede8">${catSummaryHTML}</div> <!-- Scroll indicator — above View Audit History button --> <div style="height:4px;background:#f0ede8;border-radius:2px;margin-bottom:16px;overflow:hidden"><div style="width:60%;height:100%;background:var(--gold);border-radius:2px"></div></div> <!-- View Audit History button --> <div style="display:flex;justify-content:flex-end;margin-bottom:14px"> <button onclick="tuabNavigate('inventory-audit')" style="background:#e8a020;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap"> <svg width="14" height="14" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+</div> <div style="display:flex;gap:14px;margin-bottom:18px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:#e8a020 #f0ede8">${catSummaryHTML}</div> <!-- View Audit History button --> <div style="display:flex;justify-content:flex-end;margin-bottom:14px"> <button onclick="tuabNavigate('inventory-audit')" style="background:#e8a020;color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap"> <svg width="14" height="14" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
 View Audit History
 </button> </div> <!-- Toolbar row: grid label + search --> <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"> <div style="display:flex;align-items:center;gap:10px"> <svg width="18" height="18" fill="none" stroke="#333" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/></svg> <span style="font-family:'Poppins',sans-serif;font-weight:600;font-size:14px">Inventory Grid</span> <span style="background:#e8f5ee;color:#4a7c59;border-radius:20px;padding:2px 10px;font-size:11px;font-family:'Poppins',sans-serif;font-weight:600">${INV_STATE.items.length} Items</span> </div> <div style="display:flex;align-items:center;gap:10px"> <div style="position:relative"> <input id="inv-search" placeholder="Search Inventory ID..." oninput="invSearch(this.value)" style="padding:8px 14px 8px 36px;border:1.5px solid #e8e0d8;border-radius:8px;font-family:'Poppins',sans-serif;font-size:13px;background:#faf8f5;outline:none;color:#555" value="${INV_STATE.searchQuery}"/> <svg style="position:absolute;left:11px;top:50%;transform:translateY(-50%);pointer-events:none" width="14" height="14" fill="none" stroke="#bbb" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> </div> </div> </div> <!-- Undo bar (hidden by default) --> <div id="inv-undo-bar" style="display:none;background:#fff8e8;border:1.5px solid #f0d898;border-radius:10px;padding:10px 16px;margin-bottom:12px;align-items:center;justify-content:space-between"> <span style="font-family:'Poppins',sans-serif;font-size:13px;color:#888"> <svg width="16" height="16" fill="none" stroke="#e8a020" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:middle;margin-right:6px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
 Your item has been deleted.
@@ -2120,10 +2120,11 @@ function invSearch(q) {
   const body = document.getElementById('inv-table-body');
   if (!body) return;
   body.innerHTML = filtered.map(item => {
-    const statusBg = item.status === 'Active' ? '#e8f5ee' : '#fff7e0';
-    const statusColor = item.status === 'Active' ? '#4a7c59' : '#b07000';
+    const statusBg = item.status === 'Active' ? '#e8f5ee' : item.status === 'Archived' ? '#f0ede8' : '#fff7e0';
+    const statusColor = item.status === 'Active' ? '#4a7c59' : item.status === 'Archived' ? '#999' : '#b07000';
     const barW = Math.round(item.pct * 100);
-    return `<tr> <td class="_td10">${item.id}</td> <td class="_td10">${item.donationId}</td> <td style="padding:13px 10px"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#f0ede8;border-radius:4px;min-width:80px"><div style="width:${barW}%;height:100%;background:${item.color};border-radius:4px"></div></div></div></td> <td class="_td10">${item.currentWeight} kg</td> <td style="font-family:'Poppins',sans-serif;font-size:13px;color:#666;padding:13px 10px">${item.lastAudit}</td> <td style="padding:13px 10px"><span style="background:${statusBg};color:${statusColor};border-radius:20px;padding:4px 12px;font-size:11px;font-family:'Poppins',sans-serif;font-weight:600;border:1.5px solid ${statusColor}30;display:inline-flex;align-items:center;gap:5px">${item.status === 'Audit Required' ? '<svg width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" viewBox=\"0 0 24 24\"><path d=\"M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\"/><line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"13\"/><line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"/></svg>' : ''}${item.status}</span></td> <td style="padding:13px 10px"><div style="display:flex;gap:6px"> <button onclick="openUpdateModal(${item.id})" style="background:#fff;color:#333;border:1.5px solid #ddd;border-radius:6px;padding:5px 14px;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500">Update</button> <button onclick="confirmDeleteItem(${item.id})" style="background:#fff;color:#e05050;border:1.5px solid #e05050;border-radius:6px;padding:5px 12px;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500">Delete</button> </div></td> </tr>`;
+    const actionsHTML = item.status === 'Archived' ? '—' : `<div style="display:flex;gap:6px"> <button onclick="openUpdateModal(${item.id})" style="background:#fff;color:#333;border:1.5px solid #ddd;border-radius:6px;padding:5px 14px;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500">Update</button> <button onclick="confirmDeleteItem(${item.id})" style="background:#fff;color:#e05050;border:1.5px solid #e05050;border-radius:6px;padding:5px 12px;font-size:12px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500">Delete</button> </div>`;
+    return `<tr> <td class="_td10">${item.id}</td> <td class="_td10">${item.donationId}</td> <td style="padding:13px 10px"><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#f0ede8;border-radius:4px;min-width:80px"><div style="width:${barW}%;height:100%;background:#e8a020;border-radius:4px"></div></div></div></td> <td class="_td10">${item.currentWeight} kg</td> <td style="font-family:'Poppins',sans-serif;font-size:13px;color:#666;padding:13px 10px">${item.lastAudit}</td> <td style="padding:13px 10px"><span style="background:${statusBg};color:${statusColor};border-radius:20px;padding:4px 12px;font-size:11px;font-family:'Poppins',sans-serif;font-weight:600;border:1.5px solid ${statusColor}30;display:inline-flex;align-items:center;gap:5px">${item.status === 'Audit Required' ? '<svg width=\"12\" height=\"12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" viewBox=\"0 0 24 24\"><path d=\"M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z\"/><line x1=\"12\" y1=\"9\" x2=\"12\" y2=\"13\"/><line x1=\"12\" y1=\"17\" x2=\"12.01\" y2=\"17\"/></svg>' : ''}${item.status}</span></td> <td style="padding:13px 10px">${actionsHTML}</td> </tr>`;
   }).join('');
 }
 
@@ -2138,10 +2139,11 @@ function confirmDeleteItem(id) {
     if (m) { m.style.display = 'flex'; }
     return;
   }
-  // Zero stock: delete directly with undo
-  INV_STATE.deletedItem = item;
+  // Zero stock: archive instead of delete
+  INV_STATE.deletedItem = { ...item, _prevStatus: item.status };
   INV_STATE.deletedIndex = idx;
-  INV_STATE.items.splice(idx, 1);
+  item.status = 'Archived';
+  WeaveDB.update('inventory', item._id || item.id, { status: 'Archived' });
   showUndoBar();
   invSearch(INV_STATE.searchQuery);
 }
@@ -2159,7 +2161,11 @@ function showUndoBar() {
 
 function undoDelete() {
   if (!INV_STATE.deletedItem) return;
-  INV_STATE.items.splice(INV_STATE.deletedIndex, 0, INV_STATE.deletedItem);
+  const restored = INV_STATE.items.find(i => i.id === INV_STATE.deletedItem.id);
+  if (restored) {
+    restored.status = INV_STATE.deletedItem._prevStatus || 'Active';
+    WeaveDB.update('inventory', restored._id || restored.id, { status: restored.status });
+  }
   INV_STATE.deletedItem = null;
   clearTimeout(INV_STATE.undoTimer);
   const bar = document.getElementById('inv-undo-bar');
@@ -2178,9 +2184,11 @@ function confirmArchive() {
   if (!id) return;
   const idx = INV_STATE.items.findIndex(i => i.id === id);
   if (idx > -1) {
-    INV_STATE.deletedItem = INV_STATE.items[idx];
+    const item = INV_STATE.items[idx];
+    INV_STATE.deletedItem = { ...item, _prevStatus: item.status };
     INV_STATE.deletedIndex = idx;
-    INV_STATE.items.splice(idx, 1);
+    item.status = 'Archived';
+    WeaveDB.update('inventory', item._id || item.id, { status: 'Archived' });
     showUndoBar();
     invSearch(INV_STATE.searchQuery);
   }
@@ -2216,8 +2224,17 @@ function submitUpdate() {
   item.before = before;
   item.currentWeight = Math.max(0, before - usage);
   item.lastAudit = new Date().toLocaleDateString('en-US', {month:'numeric',day:'numeric',year:'numeric'}).replace(/\//g,'-');
-  item.status = item.currentWeight > 10 ? item.status : 'Audit Required';
+  item.status = 'Active';
   item.pct = item.currentWeight / (item.before + item.used || 1);
+  // Persist to WeaveDB
+  WeaveDB.update('inventory', item._id || item.id, {
+    currentWeight: item.currentWeight,
+    status: 'Active',
+    lastAudit: item.lastAudit,
+    used: item.used,
+    before: item.before,
+    pct: item.pct
+  });
   closeUpdateModal();
   invSearch(INV_STATE.searchQuery);
 }
@@ -2934,7 +2951,8 @@ tuabClaimDelivery = function(rawId){
                    ||WeaveDB.findOne('donations',r=>r._id===id)?.fullAddress||'',
     scheduledTime:'9:00 AM'
   });
-  const amt = (Math.random() * 150 + 50).toFixed(2);
+  const amt = (window._deliveryQuoteAmount !== undefined ? window._deliveryQuoteAmount : (Math.random() * 299 + 1)).toFixed(2);
+  window._deliveryQuoteAmount = undefined;
   const ref = Math.floor(Math.random() * 9e18 + 1e18).toString();
   TUAB_PAYMENT_STATE.payments.unshift({ type:'Order Payment', amount:amt, status:'Success', reference:ref, status2:'Success' });
   _syncStateFromDB();
@@ -3045,4 +3063,63 @@ function _doLoginComplete(email){
     </div>
   </div>
 </div>
+
+<!-- Delivery Confirm Modal -->
+<div id="delivery-confirm-modal" class="modal-overlay hidden">
+  <div style="background:#fff;border-radius:20px;padding:28px 32px 24px;width:380px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.28)">
+    <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:17px;color:#1a1a1a;margin-bottom:16px">Confirm Delivery?</div>
+    <div style="font-family:'Poppins',sans-serif;font-size:14px;color:#444;line-height:1.8;margin-bottom:24px">
+      <div><strong>Total Price:</strong> ₱<span id="dc-price"></span></div>
+      <div><strong>Scheduled at:</strong> <span id="dc-sched"></span></div>
+      <div><strong>Drop off:</strong> <span id="dc-addr"></span></div>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:flex-end">
+      <button onclick="closeDeliveryConfirmModal()" style="background:#f5f0ea;color:#888;border:none;border-radius:30px;padding:11px 28px;font-size:14px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:500">Cancel</button>
+      <button id="dc-confirm-btn" style="background:#4a7c59;color:#fff;border:none;border-radius:30px;padding:11px 28px;font-size:14px;font-family:'Poppins',sans-serif;cursor:pointer;font-weight:600"
+        onmouseover="this.style.background='#3d6849'" onmouseout="this.style.background='#4a7c59'">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openDeliveryConfirmModal(rawId) {
+  // Generate quote: random between 1 and 300
+  const quote = (Math.random() * 299 + 1).toFixed(2);
+  window._deliveryQuoteAmount = parseFloat(quote);
+  window._deliveryConfirmId = rawId;
+
+  // Get address & time from current form inputs
+  const addr = document.getElementById('tuab-delivery-addr')?.value || '—';
+  const timeRaw = document.getElementById('tuab-sched-time')?.value || '09:00';
+  // Format time to 12h
+  const [hh, mm] = timeRaw.split(':').map(Number);
+  const suffix = hh >= 12 ? 'PM' : 'AM';
+  const h12 = ((hh % 12) || 12);
+  const timeFormatted = h12 + ':' + String(mm).padStart(2,'0') + ' ' + suffix;
+
+  // Get scheduled date from donation
+  const donation = TUAB_STATE?.viewingDonation;
+  const schedDate = donation?.pickupDate || '—';
+
+  document.getElementById('dc-price').textContent = quote;
+  document.getElementById('dc-sched').textContent = schedDate + ' ' + timeFormatted;
+  document.getElementById('dc-addr').textContent = addr;
+
+  document.getElementById('dc-confirm-btn').onclick = function() {
+    const pendingId = window._deliveryConfirmId;
+    document.getElementById('delivery-confirm-modal').classList.add('hidden');
+    window._deliveryConfirmId = null;
+    tuabClaimDelivery(pendingId);
+  };
+
+  document.getElementById('delivery-confirm-modal').classList.remove('hidden');
+}
+
+function closeDeliveryConfirmModal() {
+  document.getElementById('delivery-confirm-modal').classList.add('hidden');
+  window._deliveryQuoteAmount = undefined;
+  window._deliveryConfirmId = null;
+}
+</script>
+
 </html>
