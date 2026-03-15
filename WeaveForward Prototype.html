@@ -2653,7 +2653,7 @@ ${['Schedule donation pickups without leaving WeaveForward','Pickup and drop-off
 
 function renderPaymentForm(c) {
   c.innerHTML = `
-<div style="display:flex;align-items:center;justify-content:center;padding:40px 20px;flex:1"> <div style="background:#fff;border-radius:18px;padding:36px 32px 32px;width:460px;max-width:100%;box-shadow:0 4px 24px rgba(0,0,0,0.07)"> <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:18px;color:#e8a020;margin-bottom:24px">Payment Details</div> <div style="margin-bottom:16px"> <label class="_lbl">First Name</label> <input id="pay-fn" class="form-input form-input-sq" value="Juan"/> </div> <div style="margin-bottom:16px"> <label class="_lbl">Last Name</label> <input id="pay-ln" class="form-input form-input-sq" value="Dela Cruz"/> </div> <div style="margin-bottom:16px"> <label class="_lbl">Card Number</label> <input id="pay-card" class="form-input form-input-sq" value="5123456789012346"/> </div> <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px"> <div> <label class="_lbl">Expire Month</label> <input id="pay-month" class="form-input form-input-sq" value="12"/> </div> <div> <label class="_lbl">Expire Year</label> <input id="pay-year" class="form-input form-input-sq" value="2030"/> </div> <div> <label class="_lbl">CVV</label> <input id="pay-cvv" class="form-input form-input-sq" value="111"/> </div> </div> <button style="width:100%;background:#e8a020;color:#fff;border:none;border-radius:30px;padding:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer" onmouseover="this.style.background='#c8881a'" onmouseout="this.style.background='#e8a020'">Subscribe for ₱499.00</button> </div> </div>`;
+<div style="display:flex;align-items:center;justify-content:center;padding:40px 20px;flex:1"> <div style="background:#fff;border-radius:18px;padding:36px 32px 32px;width:460px;max-width:100%;box-shadow:0 4px 24px rgba(0,0,0,0.07)"> <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:18px;color:#e8a020;margin-bottom:24px">Payment Details</div> <div style="margin-bottom:16px"> <label class="_lbl">First Name</label> <input id="pay-fn" class="form-input form-input-sq" value="Juan"/> </div> <div style="margin-bottom:16px"> <label class="_lbl">Last Name</label> <input id="pay-ln" class="form-input form-input-sq" value="Dela Cruz"/> </div> <div style="margin-bottom:16px"> <label class="_lbl">Card Number</label> <input id="pay-card" class="form-input form-input-sq" value="5123456789012346"/> </div> <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px"> <div> <label class="_lbl">Expire Month</label> <input id="pay-month" class="form-input form-input-sq" value="12"/> </div> <div> <label class="_lbl">Expire Year</label> <input id="pay-year" class="form-input form-input-sq" value="2030"/> </div> <div> <label class="_lbl">CVV</label> <input id="pay-cvv" class="form-input form-input-sq" value="111"/> </div> </div> <button onclick="showAlreadySubscribedModal()" style="width:100%;background:#e8a020;color:#fff;border:none;border-radius:30px;padding:14px;font-size:15px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer" onmouseover="this.style.background='#c8881a'" onmouseout="this.style.background='#e8a020'">Subscribe for ₱499.00</button> </div> </div>`;
 }
 
 function processPayment() {
@@ -3140,5 +3140,36 @@ function closeDeliveryConfirmModal() {
   window._deliveryConfirmId = null;
 }
 </script>
+
+
+<!-- Already Subscribed Modal -->
+<div id="already-subscribed-modal" class="modal-overlay hidden">
+  <div style="background:#fff;border-radius:20px;padding:32px 36px 28px;width:420px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.24);text-align:center">
+    <div style="width:56px;height:56px;border-radius:50%;background:#fef7ea;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+      <svg width="26" height="26" fill="none" stroke="#e8a020" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:17px;color:#1a1a1a;margin-bottom:10px">Already Subscribed</div>
+    <p style="font-family:'Poppins',sans-serif;font-size:13px;color:#888;line-height:1.6;margin-bottom:24px">You are already subscribed to WeaveForward Premium. This page is for simulation purposes only.</p>
+    <button onclick="document.getElementById('already-subscribed-modal').classList.add('hidden')" style="background:#e8a020;color:#fff;border:none;border-radius:30px;padding:11px 36px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer" onmouseover="this.style.background='#c8881a'" onmouseout="this.style.background='#e8a020'">Got it</button>
+  </div>
+</div>
+<script>
+function showAlreadySubscribedModal() {
+  document.getElementById('already-subscribed-modal').classList.remove('hidden');
+}
+</script>
+
+
+<!-- Already Subscribed Modal -->
+<div id="already-subscribed-modal" class="modal-overlay hidden">
+  <div style="background:#fff;border-radius:20px;padding:32px 36px 28px;width:420px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.25);text-align:center">
+    <div style="width:56px;height:56px;border-radius:50%;background:#fef7ea;border:2px solid #f5d898;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+      <svg width="24" height="24" fill="none" stroke="#e8a020" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:17px;color:#1a1a1a;margin-bottom:8px">Already Subscribed</div>
+    <p style="font-family:'Poppins',sans-serif;font-size:13px;color:#888;line-height:1.7;margin-bottom:24px">You are already subscribed to Premium. This page is for simulation purposes only — no actual payment will be processed.</p>
+    <button onclick="document.getElementById('already-subscribed-modal').classList.add('hidden')" style="background:#e8a020;color:#fff;border:none;border-radius:30px;padding:11px 36px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer" onmouseover="this.style.background='#c8881a'" onmouseout="this.style.background='#e8a020'">Got it</button>
+  </div>
+</div>
 
 </html>
