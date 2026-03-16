@@ -181,7 +181,7 @@ table.dt tr:last-child td{border-bottom:none}
 /* ── DASHBOARD ───────────────── */
 .dashboard-layout{display:flex;gap:28px;flex:1;min-height:0;overflow:hidden}
 .dashboard-left{width:260px;flex-shrink:0;display:flex;flex-direction:column;overflow:hidden;min-height:0}
-.dashboard-right{width:calc(100% - 288px);flex-shrink:0;border-radius:12px;overflow:hidden}
+.dashboard-right{width:calc(100% - 288px);flex-shrink:0;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
 .leaderboard-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0ede8;font-family:'Poppins',sans-serif;font-size:13px}
 .leaderboard-row:last-child{border-bottom:none}
 .stat-big{font-family:'Poppins',sans-serif;font-weight:500;font-size:36px;color:var(--gold)}
@@ -346,7 +346,7 @@ table.dt tr:last-child td{border-bottom:none}
 </style></head><body><div id="screen-login" class="screen active"><div class="login-bg"></div><div class="login-card"><div class="login-avatar"><svg width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div><div class="login-title">Login</div><div class="form-group"><label class="form-label">Your email</label><input id="login-email" class="form-input" type="email" value="juan.delacruz@gmail.com" placeholder="your@email.com"/></div><div class="form-group"><div class="form-label-row"><span class="form-label">Your password</span><button class="pw-toggle-btn" onclick="togglePw('login-pw','this-icon-eye')"><svg id="this-icon-eye" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
 Hide
 </button></div><input id="login-pw" class="form-input" type="password" value="password123"/></div><div class="login-links" style="flex-direction:column;align-items:flex-end;gap:8px;margin-bottom:22px"><a onclick="showForgot()">Forgot Password</a><a onclick="goToRegister()">Register</a></div><button class="btn btn-blue btn-full" onclick="doLogin()">Log in</button>
-<p style="font-family:'Poppins',sans-serif;font-size:11px;color:#bbb;text-align:center;margin-top:14px">Use <span style="cursor:pointer;color:#c0410e;font-weight:500" onclick="document.getElementById('login-email').value='kk@gmail.com'"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3d56567d5a505c5451135e5250">[email&#160;protected]</a></span> to log in as TUAB</p></div></div><div id="screen-role" class="screen hidden"><div class="role-bg"></div><div class="role-overlay"></div><div class="role-inner"><div class="role-card" onclick="selectRole('donor')"><img src="https://i.imgur.com/I8EqCQI.png" alt="Donor"/><div class="role-card-title">DONOR</div><div class="role-card-desc">Donate garments or textiles and track their reuse by artisan businesses.</div></div><div class="role-card tuab" onclick="selectRole('tuab')"><img src="https://i.imgur.com/j8SYdR5.png" alt="TUAB"/><div class="role-card-title">TUAB</div><div class="role-card-desc">Operate a textile upcycling business and receive matched textile donations for reuse.</div></div></div></div><div id="screen-register" class="screen hidden"><div class="register-left" style="background-image:url('https://i.imgur.com/EDEi62t.jpeg');background-size:cover;background-position:center"></div><div class="register-right"><div class="register-form-wrap"><div id="reg-role-title" class="register-title">DONOR</div><div class="register-subtitle">Personal Information</div><div id="reg-step1"><div class="grid-3" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">First Name</label><input id="reg-fn" class="form-input form-input-sq" placeholder="First Name"/></div><div class="field-group"><label class="form-label-upper">Middle Name</label><input id="reg-mn" class="form-input form-input-sq" placeholder="Middle"/></div><div class="field-group"><label class="form-label-upper">Last Name</label><input id="reg-ln" class="form-input form-input-sq" placeholder="Last Name"/></div></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Email Address</label><input id="reg-email" class="form-input form-input-sq" type="email" placeholder="email@example.com"/></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Phone Number</label><div class="phone-row"><input class="form-input form-input-sq" value="+63" readonly/><input id="reg-phone" class="form-input form-input-sq" placeholder="9150814395"/></div></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Password</label><input id="reg-pw" class="form-input form-input-sq" type="password" placeholder="Password"/></div><div class="field-group" style="margin-bottom:8px"><label class="form-label-upper">Confirm Password</label><input id="reg-cpw" class="form-input form-input-sq" type="password" placeholder="Confirm Password"/></div></div><div id="reg-step2" class="hidden"><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Pickup Address</label><div class="ac-wrap"><div class="loc-input-wrap"><input id="reg-address" class="form-input form-input-sq" placeholder="Start typing address..." oninput="nominatimSearch(this.value,'reg-ac','reg-lat','reg-lng','reg-address')"/><button class="loc-pin-btn" onclick="openPickerFor('reg-address','reg-lat','reg-lng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button></div><div id="reg-ac" class="address-autocomplete hidden"></div></div></div><input type="hidden" id="reg-lat" value="14.5890"/><input type="hidden" id="reg-lng" value="120.9822"/><div class="grid-2" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">City</label><input id="reg-city" class="form-input form-input-sq" placeholder="City"/></div><div class="field-group"><label class="form-label-upper">Barangay</label><input id="reg-barangay" class="form-input form-input-sq" placeholder="Barangay"/></div></div><div class="field-group" style="margin-bottom:8px"><label class="form-label-upper">Postal Code</label><input id="reg-postal" class="form-input form-input-sq" placeholder="1000"/></div><button class="btn btn-green btn-full" style="margin-top:22px;margin-bottom:10px" onclick="doRegister()">Register</button></div><div class="step-nav"><button class="step-btn" id="reg-back-btn" onclick="regBack()"><svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button><div style="display:flex;gap:8px"><div id="dot1" class="step-dot" style="background:var(--green)"></div><div id="dot2" class="step-dot" style="background:#ccc"></div></div><button class="step-btn" id="reg-next-btn" onclick="regNext()"><svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button></div></div></div></div><div id="screen-app" class="screen hidden"><div class="sidebar"><div class="sidebar-logo"><div class="sidebar-logo-icon" style="background:none;padding:0;overflow:hidden"><img src="https://i.imgur.com/Dg9FmRA.png" style="width:36px;height:36px;object-fit:contain;display:block"/></div><span class="sidebar-logo-text pixel">WeaveForward</span></div><div class="sidebar-nav"><div class="sidebar-item" id="nav-browse" onclick="navigate('browse')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Browse Businesses</span></div><div class="sidebar-item" id="nav-donations" onclick="navigate('donations')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>My Donations</span></div><div class="sidebar-item" id="nav-dashboard" onclick="navigate('dashboard')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg><span>Donation Impact Dashboard</span></div></div><div class="sidebar-bottom"><div class="sidebar-item" id="nav-profile" onclick="navigate('profile')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Account Profile</span></div><div class="sidebar-item" onclick="doLogout()"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span>Logout</span></div></div></div><div class="main-area"><div class="topbar"><div class="topbar-left" id="topbar-left"><span class="topbar-title pixel" id="page-title">Browse Businesses</span></div><div id="topbar-avatar" class="avatar-chip">JDC</div></div><div class="content" id="main-content"></div></div></div>
+</div></div><div id="screen-role" class="screen hidden"><div class="role-bg"></div><div class="role-overlay"></div><div class="role-inner"><div class="role-card" onclick="selectRole('donor')"><img src="https://i.imgur.com/I8EqCQI.png" alt="Donor"/><div class="role-card-title">DONOR</div><div class="role-card-desc">Donate garments or textiles and track their reuse by artisan businesses.</div></div><div class="role-card tuab" onclick="selectRole('tuab')"><img src="https://i.imgur.com/j8SYdR5.png" alt="TUAB"/><div class="role-card-title">TUAB</div><div class="role-card-desc">Operate a textile upcycling business and receive matched textile donations for reuse.</div></div></div></div><div id="screen-register" class="screen hidden"><div class="register-left" style="background-image:url('https://i.imgur.com/EDEi62t.jpeg');background-size:cover;background-position:center"></div><div class="register-right"><div class="register-form-wrap"><div id="reg-role-title" class="register-title">DONOR</div><div class="register-subtitle">Personal Information</div><div id="reg-step1"><div class="grid-3" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">First Name</label><input id="reg-fn" class="form-input form-input-sq" placeholder="First Name"/></div><div class="field-group"><label class="form-label-upper">Middle Name</label><input id="reg-mn" class="form-input form-input-sq" placeholder="Middle"/></div><div class="field-group"><label class="form-label-upper">Last Name</label><input id="reg-ln" class="form-input form-input-sq" placeholder="Last Name"/></div></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Email Address</label><input id="reg-email" class="form-input form-input-sq" type="email" placeholder="email@example.com"/></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Phone Number</label><div class="phone-row"><input class="form-input form-input-sq" value="+63" readonly/><input id="reg-phone" class="form-input form-input-sq" placeholder="9150814395"/></div></div><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Password</label><input id="reg-pw" class="form-input form-input-sq" type="password" placeholder="Password"/></div><div class="field-group" style="margin-bottom:8px"><label class="form-label-upper">Confirm Password</label><input id="reg-cpw" class="form-input form-input-sq" type="password" placeholder="Confirm Password"/></div></div><div id="reg-step2" class="hidden"><div class="field-group" style="margin-bottom:14px"><label class="form-label-upper">Pickup Address</label><div class="ac-wrap"><div class="loc-input-wrap"><input id="reg-address" class="form-input form-input-sq" placeholder="Start typing address..." oninput="nominatimSearch(this.value,'reg-ac','reg-lat','reg-lng','reg-address')"/><button class="loc-pin-btn" onclick="openPickerFor('reg-address','reg-lat','reg-lng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button></div><div id="reg-ac" class="address-autocomplete hidden"></div></div></div><input type="hidden" id="reg-lat" value="14.5890"/><input type="hidden" id="reg-lng" value="120.9822"/><div class="grid-2" style="margin-bottom:14px"><div class="field-group"><label class="form-label-upper">City</label><input id="reg-city" class="form-input form-input-sq" placeholder="City"/></div><div class="field-group"><label class="form-label-upper">Barangay</label><input id="reg-barangay" class="form-input form-input-sq" placeholder="Barangay"/></div></div><div class="field-group" style="margin-bottom:8px"><label class="form-label-upper">Postal Code</label><input id="reg-postal" class="form-input form-input-sq" placeholder="1000"/></div><button class="btn btn-green btn-full" style="margin-top:22px;margin-bottom:10px" onclick="doRegister()">Register</button></div><div class="step-nav"><button class="step-btn" id="reg-back-btn" onclick="regBack()"><svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg></button><div style="display:flex;gap:8px"><div id="dot1" class="step-dot" style="background:var(--green)"></div><div id="dot2" class="step-dot" style="background:#ccc"></div></div><button class="step-btn" id="reg-next-btn" onclick="regNext()"><svg width="20" height="20" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg></button></div></div></div></div><div id="screen-app" class="screen hidden"><div class="sidebar"><div class="sidebar-logo"><div class="sidebar-logo-icon" style="background:none;padding:0;overflow:hidden"><img src="https://i.imgur.com/Dg9FmRA.png" style="width:36px;height:36px;object-fit:contain;display:block"/></div><span class="sidebar-logo-text pixel">WeaveForward</span></div><div class="sidebar-nav"><div class="sidebar-item" id="nav-browse" onclick="navigate('browse')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Browse Businesses</span></div><div class="sidebar-item" id="nav-donations" onclick="navigate('donations')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg><span>My Donations</span></div><div class="sidebar-item" id="nav-dashboard" onclick="navigate('dashboard')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg><span>Donation Impact Dashboard</span></div></div><div class="sidebar-bottom"><div class="sidebar-item" id="nav-profile" onclick="navigate('profile')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Account Profile</span></div><div class="sidebar-item" onclick="doLogout()"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span>Logout</span></div></div></div><div class="main-area"><div class="topbar"><div class="topbar-left" id="topbar-left"><span class="topbar-title pixel" id="page-title">Browse Businesses</span></div><div id="topbar-avatar" class="avatar-chip">JDC</div></div><div class="content" id="main-content"></div></div></div>
 <!-- ══ TUAB REGISTRATION SCREEN ════════════════════════════ -->
 <div id="screen-tuab-register" class="screen hidden">
   <div class="tuab-reg-left">
@@ -556,7 +556,7 @@ Hide
 
 <div id="map-modal" class="map-modal-overlay hidden"><div class="map-modal"><button class="map-close" onclick="closeMapPicker()">×</button><div class="map-modal-title"><svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
 Pick on Map
-</div><div class="map-modal-sub">Click anywhere or drag the marker to set your pickup location.</div><div id="picker-map"></div><button class="btn btn-primary btn-full" style="margin-top:14px;border-radius:30px;padding:13px" onclick="confirmMapPicker()">Confirm Location</button></div></div><div id="generic-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-msg" id="generic-modal-msg"></div><div class="modal-btns" id="generic-modal-btns"></div></div></div><div id="twofa-modal" class="modal-overlay hidden"><div style="background:#fff;border-radius:20px;padding:36px 40px 32px;width:440px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.22)"><h3 class="_modal-ttl">Enable Two-Factor Authentication</h3><p class="_modal-sub" style="margin-bottom:24px">Two-factor authentication will be enabled for your account. Click confirm to proceed.</p><div style="background:#fef7ea;border:1.5px solid #f5d898;border-radius:12px;padding:15px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#e8a020;text-align:center;letter-spacing:.5px;margin-bottom:24px;word-break:break-all;">KZMFQ2LONRUXG5DFMZTWQ3LQN5ZXIYQK</div><div style="display:flex;gap:12px;justify-content:flex-end"><button onclick="cancelTwoFA()" class="btn btn-outline _cancel-btn">Cancel</button><button class="btn btn-primary" onclick="verifyTwoFA()" style="border-radius:30px;padding:11px 32px;font-size:14px">Verify &amp; Enable</button></div></div></div><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+</div><div class="map-modal-sub">Click anywhere or drag the marker to set your pickup location.</div><div id="picker-map"></div><button class="btn btn-primary btn-full" style="margin-top:14px;border-radius:30px;padding:13px" onclick="confirmMapPicker()">Confirm Location</button></div></div><div id="generic-modal" class="modal-overlay hidden"><div class="modal-box"><div class="modal-msg" id="generic-modal-msg"></div><div class="modal-btns" id="generic-modal-btns"></div></div></div><div id="twofa-modal" class="modal-overlay hidden"><div style="background:#fff;border-radius:20px;padding:36px 40px 32px;width:440px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.22)"><h3 class="_modal-ttl">Enable Two-Factor Authentication</h3><p class="_modal-sub" style="margin-bottom:24px">Scan the key below with your authenticator app, then enter the 6-digit code to confirm.</p><div style="background:#fef7ea;border:1.5px solid #f5d898;border-radius:12px;padding:15px 20px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:500;color:#e8a020;text-align:center;letter-spacing:.5px;margin-bottom:20px;word-break:break-all;">KZMFQ2LONRUXG5DFMZTWQ3LQN5ZXIYQK</div><input id="twofa-totp-input" class="form-input form-input-sq _totp" type="password" placeholder="● ● ● ● ● ●" maxlength="6" style="margin-bottom:24px;text-align:center;font-size:22px;letter-spacing:8px"/><div style="display:flex;gap:12px;justify-content:flex-end"><button onclick="cancelTwoFA()" class="btn btn-outline _cancel-btn">Cancel</button><button class="btn btn-primary" onclick="verifyTwoFA()" style="border-radius:30px;padding:11px 32px;font-size:14px">Verify &amp; Enable</button></div></div></div><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 let _NCR_GEOJSON = null;
 (async function loadNCRGeoJSON() {
   const RAW_URL = 'https://gist.githubusercontent.com/dave34458/0755cbce3485c659971c68246e51aa34/raw/e71c6d71c54c197648f18d3530142b6f7022d85f/ncr_barangays.geojson';
@@ -858,7 +858,7 @@ c.innerHTML = `
 <p id="don-count" style="font-family:'Poppins',sans-serif;font-weight:300;font-size:13px;color:#666;margin-bottom:10px">${STATE.donations.length} Donation Requests</p><div class="search-bar-row"><div class="search-wrap"><div class="search-icon"><svg width="17" height="17" fill="none" stroke="#aaa" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><input class="form-input" id="don-search" placeholder="Search Donations" oninput="filterDonations()" style="border-radius:8px"/></div><button class="btn btn-primary btn-primary-sq" onclick="navigate('create-donation')">Create Donation</button></div><div class="table-wrap" id="don-table-wrap">${renderDonationTable(STATE.donations)}</div>`;
 }
 function renderDonationTable(list) {
-if (!list.length) return `<p style="padding:24px;font-family:'Poppins',sans-serif;color:#999">No donations found.</p>`;
+if (!list.length) return `<p style="padding:24px;font-family:'Poppins',sans-serif;color:#999">Empty</p>`;
 const rows = list.map(d => {
 const itemStr = d.items.map(i=>`${i.type} - ${i.brand}`).join(', ');
 const itemTrunc = itemStr.length > 80 ? itemStr.substring(0,80)+'...' : itemStr;
@@ -1059,42 +1059,148 @@ c.innerHTML = `
 // ═══════════════════════════════════════════════════════════
 // DONATION IMPACT DASHBOARD
 // ═══════════════════════════════════════════════════════════
+
+// Rich fake donation data with city tags
+const DASH_DONATIONS = [
+  // Manila
+  {id:101,donor:'Maria Santos',city:'Manila',lat:14.5995,lng:120.9842,date:'2026-01-05',type:'Blouse',claimedBy:'EcoWeave PH'},
+  {id:102,donor:'Jose Reyes',city:'Manila',lat:14.5901,lng:120.9770,date:'2026-01-12',type:'Pants',claimedBy:'GreenThread'},
+  {id:103,donor:'Ana Cruz',city:'Manila',lat:14.6050,lng:120.9900,date:'2026-01-20',type:'Jacket',claimedBy:'ReFiber MNL'},
+  {id:104,donor:'Miguel Dela Rosa',city:'Manila',lat:14.5850,lng:120.9860,date:'2026-02-03',type:'Dress',claimedBy:'EcoWeave PH'},
+  {id:105,donor:'Sofia Bautista',city:'Manila',lat:14.5780,lng:120.9810,date:'2026-02-14',type:'T-Shirt',claimedBy:''},
+  {id:106,donor:'Carlos Mendoza',city:'Manila',lat:14.6100,lng:120.9750,date:'2026-02-28',type:'Skirt',claimedBy:'GreenThread'},
+  {id:107,donor:'Elena Flores',city:'Manila',lat:14.5660,lng:120.9920,date:'2026-03-05',type:'Polo',claimedBy:''},
+  // Quezon City
+  {id:201,donor:'Ramon Garcia',city:'Quezon City',lat:14.6760,lng:121.0437,date:'2026-01-08',type:'Jeans',claimedBy:'Cloth Cycle QC'},
+  {id:202,donor:'Isabel Torres',city:'Quezon City',lat:14.6900,lng:121.0300,date:'2026-01-15',type:'Blouse',claimedBy:'TextileLoop'},
+  {id:203,donor:'Andres Lopez',city:'Quezon City',lat:14.6600,lng:121.0500,date:'2026-01-25',type:'Jacket',claimedBy:'Cloth Cycle QC'},
+  {id:204,donor:'Lucia Ramos',city:'Quezon City',lat:14.7000,lng:121.0200,date:'2026-02-07',type:'Dress',claimedBy:''},
+  {id:205,donor:'Felix Navarro',city:'Quezon City',lat:14.6800,lng:121.0600,date:'2026-02-18',type:'T-Shirt',claimedBy:'TextileLoop'},
+  {id:206,donor:'Rosa Aquino',city:'Quezon City',lat:14.6500,lng:121.0350,date:'2026-03-01',type:'Pants',claimedBy:'Cloth Cycle QC'},
+  {id:207,donor:'Dante Villanueva',city:'Quezon City',lat:14.7100,lng:121.0150,date:'2026-03-08',type:'Hoodie',claimedBy:''},
+  {id:208,donor:'Carmen Castillo',city:'Quezon City',lat:14.6700,lng:121.0550,date:'2026-03-12',type:'Skirt',claimedBy:'TextileLoop'},
+  // Caloocan
+  {id:301,donor:'Pedro Dimaculangan',city:'Caloocan',lat:14.6496,lng:120.9675,date:'2026-01-10',type:'Polo',claimedBy:'NorthFiber'},
+  {id:302,donor:'Nena Pineda',city:'Caloocan',lat:14.6600,lng:120.9600,date:'2026-01-22',type:'Jeans',claimedBy:''},
+  {id:303,donor:'Boy Reyes',city:'Caloocan',lat:14.6350,lng:120.9720,date:'2026-02-10',type:'Jacket',claimedBy:'NorthFiber'},
+  {id:304,donor:'Lita Soriano',city:'Caloocan',lat:14.6700,lng:120.9550,date:'2026-02-25',type:'Dress',claimedBy:''},
+  {id:305,donor:'Rudy Fernandez',city:'Caloocan',lat:14.6400,lng:120.9800,date:'2026-03-03',type:'Blouse',claimedBy:'NorthFiber'},
+  // Makati
+  {id:401,donor:'Bianca Salcedo',city:'Makati',lat:14.5547,lng:121.0244,date:'2026-01-07',type:'Blazer',claimedBy:'UrbanFiber MKT'},
+  {id:402,donor:'Troy Dizon',city:'Makati',lat:14.5620,lng:121.0180,date:'2026-01-18',type:'Dress',claimedBy:'LuxRecycle'},
+  {id:403,donor:'Vince Ong',city:'Makati',lat:14.5480,lng:121.0300,date:'2026-02-05',type:'Polo',claimedBy:'UrbanFiber MKT'},
+  {id:404,donor:'Mia Santiago',city:'Makati',lat:14.5700,lng:121.0120,date:'2026-02-20',type:'Skirt',claimedBy:'LuxRecycle'},
+  {id:405,donor:'Kevin Yu',city:'Makati',lat:14.5500,lng:121.0350,date:'2026-03-06',type:'Jacket',claimedBy:''},
+  // Pasig
+  {id:501,donor:'Gina Ocampo',city:'Pasig',lat:14.5764,lng:121.0854,date:'2026-01-11',type:'T-Shirt',claimedBy:'EastWear PH'},
+  {id:502,donor:'Bong Santos',city:'Pasig',lat:14.5900,lng:121.0700,date:'2026-01-24',type:'Jeans',claimedBy:''},
+  {id:503,donor:'Joy Villanueva',city:'Pasig',lat:14.5650,lng:121.0950,date:'2026-02-08',type:'Blouse',claimedBy:'EastWear PH'},
+  {id:504,donor:'Noel Mercado',city:'Pasig',lat:14.5820,lng:121.0800,date:'2026-02-22',type:'Hoodie',claimedBy:''},
+  {id:505,donor:'Liza Valdez',city:'Pasig',lat:14.5700,lng:121.1000,date:'2026-03-07',type:'Pants',claimedBy:'EastWear PH'},
+  // Taguig
+  {id:601,donor:'Mark Lim',city:'Taguig',lat:14.5176,lng:121.0509,date:'2026-01-09',type:'Polo',claimedBy:'BGC Threads'},
+  {id:602,donor:'Pia Reyes',city:'Taguig',lat:14.5250,lng:121.0400,date:'2026-01-28',type:'Dress',claimedBy:'BGC Threads'},
+  {id:603,donor:'Ian Cruz',city:'Taguig',lat:14.5100,lng:121.0600,date:'2026-02-12',type:'Jacket',claimedBy:''},
+  {id:604,donor:'Tina Morales',city:'Taguig',lat:14.5300,lng:121.0300,date:'2026-03-04',type:'T-Shirt',claimedBy:'BGC Threads'},
+  // Mandaluyong
+  {id:701,donor:'Rene Castro',city:'Mandaluyong',lat:14.5794,lng:121.0359,date:'2026-01-13',type:'Jeans',claimedBy:'MidCity Fiber'},
+  {id:702,donor:'Grace Tan',city:'Mandaluyong',lat:14.5850,lng:121.0250,date:'2026-02-01',type:'Blouse',claimedBy:''},
+  {id:703,donor:'Jojo Dela Cruz',city:'Mandaluyong',lat:14.5720,lng:121.0450,date:'2026-02-16',type:'Hoodie',claimedBy:'MidCity Fiber'},
+  // Pasay
+  {id:801,donor:'Lourdes Reyes',city:'Pasay',lat:14.5378,lng:121.0014,date:'2026-01-16',type:'Skirt',claimedBy:'SouthLoop'},
+  {id:802,donor:'Ricky Mendoza',city:'Pasay',lat:14.5450,lng:120.9950,date:'2026-02-04',type:'Polo',claimedBy:''},
+  {id:803,donor:'Cora Bautista',city:'Pasay',lat:14.5300,lng:121.0100,date:'2026-03-01',type:'Jacket',claimedBy:'SouthLoop'},
+  // Parañaque
+  {id:901,donor:'Eddie Gomez',city:'Parañaque',lat:14.4793,lng:121.0198,date:'2026-01-19',type:'T-Shirt',claimedBy:'SouthFiber PH'},
+  {id:902,donor:'Nelia Santos',city:'Parañaque',lat:14.4900,lng:121.0100,date:'2026-02-09',type:'Dress',claimedBy:''},
+  {id:903,donor:'Victor Ramos',city:'Parañaque',lat:14.4680,lng:121.0300,date:'2026-02-26',type:'Jeans',claimedBy:'SouthFiber PH'},
+  // Marikina
+  {id:1001,donor:'Dante Aquino',city:'Marikina',lat:14.6507,lng:121.1029,date:'2026-01-21',type:'Blouse',claimedBy:'RiverCity Cloth'},
+  {id:1002,donor:'Alma Villanueva',city:'Marikina',lat:14.6600,lng:121.0950,date:'2026-02-13',type:'Polo',claimedBy:''},
+  {id:1003,donor:'Ronie Dizon',city:'Marikina',lat:14.6400,lng:121.1100,date:'2026-03-02',type:'Jacket',claimedBy:'RiverCity Cloth'},
+  // Valenzuela
+  {id:1101,donor:'Cesar Pascual',city:'Valenzuela',lat:14.6997,lng:120.9838,date:'2026-01-23',type:'Hoodie',claimedBy:'NorthWest Fiber'},
+  {id:1102,donor:'Merced Flores',city:'Valenzuela',lat:14.7100,lng:120.9750,date:'2026-02-17',type:'Jeans',claimedBy:''},
+  {id:1103,donor:'Ariel Reyes',city:'Valenzuela',lat:14.6900,lng:120.9900,date:'2026-03-05',type:'T-Shirt',claimedBy:'NorthWest Fiber'},
+  // Las Piñas
+  {id:1201,donor:'Fely Navarro',city:'Las Piñas',lat:14.4453,lng:120.9833,date:'2026-01-26',type:'Dress',claimedBy:'SouthWest Cloth'},
+  {id:1202,donor:'Ador Castillo',city:'Las Piñas',lat:14.4550,lng:120.9750,date:'2026-02-19',type:'Blouse',claimedBy:''},
+  // Muntinlupa
+  {id:1301,donor:'Norie Salcedo',city:'Muntinlupa',lat:14.4081,lng:121.0415,date:'2026-01-29',type:'Polo',claimedBy:'Alabang Threads'},
+  {id:1302,donor:'Jun Reyes',city:'Muntinlupa',lat:14.4200,lng:121.0300,date:'2026-02-24',type:'Jacket',claimedBy:'Alabang Threads'},
+  // San Juan
+  {id:1401,donor:'Tessie Garcia',city:'San Juan',lat:14.6019,lng:121.0355,date:'2026-02-02',type:'Skirt',claimedBy:''},
+  {id:1402,donor:'Lito Cruz',city:'San Juan',lat:14.6100,lng:121.0280,date:'2026-03-09',type:'T-Shirt',claimedBy:'SJ Recycles'},
+  // Navotas
+  {id:1501,donor:'Flor Pineda',city:'Navotas',lat:14.6657,lng:120.9424,date:'2026-02-06',type:'Pants',claimedBy:''},
+  {id:1502,donor:'Ruben Soriano',city:'Navotas',lat:14.6750,lng:120.9350,date:'2026-03-10',type:'Polo',claimedBy:'BayFiber'},
+  // Malabon
+  {id:1601,donor:'Cita Fernandez',city:'Malabon',lat:14.6625,lng:120.9572,date:'2026-02-11',type:'Blouse',claimedBy:'MalFiber'},
+  {id:1602,donor:'Ding Lopez',city:'Malabon',lat:14.6700,lng:120.9500,date:'2026-03-03',type:'Jeans',claimedBy:''},
+  // Pateros
+  {id:1701,donor:'Berto Torres',city:'Pateros',lat:14.5456,lng:121.0678,date:'2026-02-23',type:'Hoodie',claimedBy:''},
+];
+
+// Build leaderboard from DASH_DONATIONS — counts by donor name
+function buildDashLeaderboard(data) {
+  const counts = {};
+  data.forEach(d => { counts[d.donor] = (counts[d.donor]||0)+1; });
+  return Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,13).map(([name,count])=>({name,count}));
+}
+
 function renderDashboard(c) {
-// Make content area flush for dashboard (no bottom padding, no scroll)
 c.style.padding = '0 32px 0';
 c.style.overflow = 'hidden';
-const lbHTML = LEADERBOARD.map(r=>`<div class="leaderboard-row"><span>${r.name}</span><span style="color:var(--gold);font-weight:500">${r.count}</span></div>`).join('');
+const lbData = buildDashLeaderboard(DASH_DONATIONS);
+const lbHTML = lbData.map(r=>`<div class="leaderboard-row"><span>${r.name}</span><span style="color:var(--gold);font-weight:500">${r.count}</span></div>`).join('');
 const ctOpts = ['All Types',...CLOTHING_TYPES].map(t=>`<option value="${t}">${t}</option>`).join('');
 const phCities = ['All Cities','Manila','Quezon City','Caloocan','Makati','Pasig','Taguig','Mandaluyong','Pasay','Parañaque','Las Piñas','Muntinlupa','Marikina','San Juan','Valenzuela','Navotas','Malabon','Pateros'];
-const cityOpts = phCities.map(c=>`<option value="${c}">${c}</option>`).join('');
+const cityOpts = phCities.map(city=>`<option value="${city}">${city}</option>`).join('');
 c.innerHTML = `
-<div class="dashboard-layout"><div class="dashboard-left"><div class="card-title" style="font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;margin-bottom:16px">Filters</div><div class="field-group" style="margin-bottom:12px"><label class="form-label-upper">Date Range</label><div style="display:flex;flex-direction:column;gap:6px"><input class="form-input form-input-sq" type="date" id="dash-from" style="font-size:12px;width:100%"/><input class="form-input form-input-sq" type="date" id="dash-to" style="font-size:12px;width:100%"/></div></div><div class="field-group" style="margin-bottom:12px"><label class="form-label-upper">City</label><select class="form-select" id="dash-city" onchange="updateDashCityLatLng(this.value)">${cityOpts}</select></div><div class="field-group" style="margin-bottom:16px"><label class="form-label-upper">Clothing Type</label><select class="form-select" id="dash-ctype">${ctOpts}</select></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px"><button class="btn btn-primary btn-primary-sq" onclick="applyDashFilters()">Apply Filters</button><button class="btn btn-primary btn-primary-sq" onclick="resetDashFilters()">Reset</button></div><div class="stats-row"><div><div class="stat-big" id="dash-stat-don">160</div><div class="stat-lbl">Donations</div></div><div><div class="stat-big" id="dash-stat-donors">30</div><div class="stat-lbl">Donors</div></div></div><div id="dash-leaderboard" style="overflow-y:auto;flex:1;min-height:0;scrollbar-width:thin;scrollbar-color:#E8A020 #FFF1D8">${lbHTML}</div></div><div class="dashboard-right" id="dash-map-container"><div id="dash-map" style="width:100%;height:100%"></div></div></div><input type="hidden" id="dash-lat" value="14.5995"/><input type="hidden" id="dash-lng" value="120.9842"/>`;
+<div class="dashboard-layout">
+  <div class="dashboard-left">
+    <div class="card-title" style="font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;margin-bottom:16px">Filters</div>
+    <div class="field-group" style="margin-bottom:12px"><label class="form-label-upper">Date Range</label><div style="display:flex;flex-direction:column;gap:6px"><input class="form-input form-input-sq" type="date" id="dash-from" style="font-size:12px;width:100%"/><input class="form-input form-input-sq" type="date" id="dash-to" style="font-size:12px;width:100%"/></div></div>
+    <div class="field-group" style="margin-bottom:12px"><label class="form-label-upper">City</label><select class="form-select" id="dash-city">${cityOpts}</select></div>
+    <div class="field-group" style="margin-bottom:16px"><label class="form-label-upper">Clothing Type</label><select class="form-select" id="dash-ctype">${ctOpts}</select></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px"><button class="btn btn-primary btn-primary-sq" onclick="applyDashFilters()">Apply</button><button class="btn btn-primary btn-primary-sq" onclick="resetDashFilters()">Reset</button></div>
+    <div class="stats-row" style="margin-bottom:14px">
+      <div><div class="stat-big" id="dash-stat-don">${DASH_DONATIONS.length}</div><div class="stat-lbl">Donations</div></div>
+      <div><div class="stat-big" id="dash-stat-donors">0</div><div class="stat-lbl">Claimed</div></div>
+    </div>
+    <div id="dash-leaderboard" style="overflow-y:auto;flex:1;min-height:0;scrollbar-width:thin;scrollbar-color:#E8A020 #FFF1D8">${lbHTML}</div>
+  </div>
+  <div class="dashboard-right" id="dash-map-container" style="display:flex;flex-direction:column;border-radius:12px;overflow:hidden">
+    <div id="dash-map" style="width:100%;flex:1"></div>
+  </div>
+</div>`;
 setTimeout(()=>initDashMap(), 100);
 }
+
 function initDashMap() {
 if (STATE.dashMap) return;
 const el = document.getElementById('dash-map');
 if (!el) return;
-const map = L.map('dash-map').setView([14.5995, 120.9842], 11);
+const map = L.map('dash-map').setView([14.5900, 121.0100], 11);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
 attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 STATE.dashMap = map;
-const pts = [
-[14.7060,121.0220],[14.6760,120.9820],[14.5995,120.9842],[14.5378,121.0014],
-[14.6200,121.0250],[14.6500,120.9700],[14.5600,120.9900],[14.7200,121.0400],
-[14.4900,120.9700],[14.6900,121.0100],[14.5100,121.0300],[14.6300,121.0500],
-[14.5800,120.9600],[14.7000,120.9500],[14.5200,121.0100],[14.6600,120.9900],
-[14.4800,121.0000],[14.5500,120.9700],[14.5400,121.0200],[14.6100,121.0000],
-[14.5700,121.0100],[14.6400,120.9800],[14.5900,120.9700],[14.6700,121.0300],
-[14.5300,120.9900],[14.7100,121.0000],[14.4700,120.9800],[14.6000,121.0400],
-[14.5600,121.0200],[14.6800,120.9600]
-];
-STATE.dashMarkers = pts.map(p => {
-const mk = L.marker(p).addTo(map);
-return mk;
+// Build markers with city metadata
+STATE.dashMarkers = DASH_DONATIONS.map(d => {
+  const mk = L.marker([d.lat, d.lng]).addTo(map);
+  mk._dashCity = d.city;
+  mk._dashType = d.type;
+  mk._dashDate = d.date;
+  mk._dashDonor = d.donor;
+  mk._dashClaimed = d.claimedBy;
+  mk.bindPopup(`<b>${d.donor}</b><br><span style="color:#888;font-size:11px">${d.city} · ${d.type}</span>${d.claimedBy?`<br><span style="color:#4a7c59;font-size:11px">✓ ${d.claimedBy}</span>`:''}`);
+  return mk;
 });
+// Set initial stats
+_updateDashStats(DASH_DONATIONS);
 }
+
 // City lat/lng lookup for dashboard
 const CITY_COORDS = {
 'Manila':[14.5995,120.9842],'Quezon City':[14.6760,121.0437],'Caloocan':[14.6496,120.9675],
@@ -1104,6 +1210,7 @@ const CITY_COORDS = {
 'San Juan':[14.6019,121.0355],'Valenzuela':[14.6997,120.9838],'Navotas':[14.6657,120.9424],
 'Malabon':[14.6625,120.9572],'Pateros':[14.5456,121.0678]
 };
+
 function updateDashCityLatLng(city) {
 const coords = CITY_COORDS[city];
 if (coords) {
@@ -1111,50 +1218,80 @@ document.getElementById('dash-lat').value = coords[0];
 document.getElementById('dash-lng').value = coords[1];
 }
 }
+
+function _updateDashStats(filtered) {
+  const claimed = filtered.filter(d=>d.claimedBy).length;
+  const donEl = document.getElementById('dash-stat-don');
+  const clEl = document.getElementById('dash-stat-donors');
+  if (donEl) donEl.textContent = filtered.length;
+  if (clEl) clEl.textContent = claimed;
+  // Update leaderboard
+  const lbData = buildDashLeaderboard(filtered);
+  const lbEl = document.getElementById('dash-leaderboard');
+  if (lbEl) lbEl.innerHTML = lbData.length ? lbData.map(r=>`<div class="leaderboard-row"><span>${r.name}</span><span style="color:var(--gold);font-weight:500">${r.count}</span></div>`).join('') : `<p style="font-family:'Poppins',sans-serif;font-size:12px;color:#bbb;padding:8px 0">No donors</p>`;
+}
+
 function applyDashFilters() {
-const city = document.getElementById('dash-city')?.value;
-const ctype = document.getElementById('dash-ctype')?.value;
+const city = document.getElementById('dash-city')?.value || 'All Cities';
+const ctype = document.getElementById('dash-ctype')?.value || 'All Types';
 const dateFrom = document.getElementById('dash-from')?.value;
 const dateTo = document.getElementById('dash-to')?.value;
-const lat = parseFloat(document.getElementById('dash-lat')?.value);
-const lng = parseFloat(document.getElementById('dash-lng')?.value);
-// Filter donations
-let filtered = [...STATE.donations];
-if (dateFrom) filtered = filtered.filter(d => new Date(d.pickupDate) >= new Date(dateFrom));
-if (dateTo) filtered = filtered.filter(d => new Date(d.pickupDate) <= new Date(dateTo));
-if (ctype && ctype !== 'All Types') filtered = filtered.filter(d => d.items.some(i=>i.type===ctype));
-// Update stats
-const donorSet = new Set(filtered.map(d=>d.claimedBy).filter(Boolean));
-document.getElementById('dash-stat-don').textContent = filtered.length || 160;
-document.getElementById('dash-stat-donors').textContent = donorSet.size || 30;
-// Pan map to city
-if (STATE.dashMap && !isNaN(lat) && !isNaN(lng) && city !== 'All Cities') {
-STATE.dashMap.setView([lat,lng], 13);
-// show only markers near selected city
-const radius = 20; // km
-STATE.dashMarkers.forEach(mk => {
-const ll = mk.getLatLng();
-const dist = haversine(lat, lng, ll.lat, ll.lng);
-if (dist < radius) {
-if (!mk._map) mk.addTo(STATE.dashMap);
-} else {
-if (mk._map) mk.remove();
-}
+
+// Filter data
+let filtered = DASH_DONATIONS.filter(d => {
+  if (city !== 'All Cities' && d.city !== city) return false;
+  if (ctype !== 'All Types' && d.type !== ctype) return false;
+  if (dateFrom && d.date < dateFrom) return false;
+  if (dateTo && d.date > dateTo) return false;
+  return true;
 });
+
+// Update stats + leaderboard
+_updateDashStats(filtered);
+
+// Update map markers — show only filtered ones
+if (STATE.dashMap && STATE.dashMarkers) {
+  const filteredIds = new Set(filtered.map(d=>d.id));
+  let shown = 0;
+  STATE.dashMarkers.forEach(mk => {
+    // find matching donation by comparing lat/lng (markers are created in order)
+    const idx = STATE.dashMarkers.indexOf(mk);
+    const d = DASH_DONATIONS[idx];
+    const match = filteredIds.has(d?.id);
+    if (match) {
+      if (!mk._map) mk.addTo(STATE.dashMap);
+      shown++;
+    } else {
+      if (mk._map) mk.remove();
+    }
+  });
+
+  // Pan/zoom map
+  if (city !== 'All Cities' && CITY_COORDS[city]) {
+    STATE.dashMap.setView(CITY_COORDS[city], 13);
+  } else if (filtered.length > 0) {
+    // Fit to visible markers
+    const visLats = filtered.map(d=>d.lat);
+    const visLngs = filtered.map(d=>d.lng);
+    const bounds = L.latLngBounds(
+      [Math.min(...visLats)-0.01, Math.min(...visLngs)-0.01],
+      [Math.max(...visLats)+0.01, Math.max(...visLngs)+0.01]
+    );
+    STATE.dashMap.fitBounds(bounds, {padding:[20,20]});
+  }
 }
 }
+
 function resetDashFilters() {
 if (document.getElementById('dash-from')) document.getElementById('dash-from').value='';
 if (document.getElementById('dash-to')) document.getElementById('dash-to').value='';
 if (document.getElementById('dash-city')) document.getElementById('dash-city').value='All Cities';
 if (document.getElementById('dash-ctype')) document.getElementById('dash-ctype').value='All Types';
-if (document.getElementById('dash-lat')) document.getElementById('dash-lat').value='14.5995';
-if (document.getElementById('dash-lng')) document.getElementById('dash-lng').value='120.9842';
-document.getElementById('dash-stat-don').textContent = '160';
-document.getElementById('dash-stat-donors').textContent = '30';
-if (STATE.dashMap) {
-STATE.dashMap.setView([14.5995,120.9842],11);
-STATE.dashMarkers.forEach(mk => { if (!mk._map) mk.addTo(STATE.dashMap); });
+_updateDashStats(DASH_DONATIONS);
+if (STATE.dashMap && STATE.dashMarkers) {
+  STATE.dashMarkers.forEach(mk => { if (!mk._map) mk.addTo(STATE.dashMap); });
+  STATE.dashMap.setView([14.5900, 121.0100], 11);
+
 }
 }
 // ═══════════════════════════════════════════════════════════
@@ -1701,7 +1838,7 @@ L.marker([d.lat, d.lng]).addTo(TUAB_STATE.tuabMap)
 
 function renderTuabTable(tab) {
 const list = TUAB_STATE.donations[tab];
-if (!list.length) return `<p class="_bbb-p">No donations found.</p>`;
+if (!list.length) return `<p class="_bbb-p">Empty</p>`;
 return `<table class="tuab-table"><thead><tr>
 <th style="color:#1a1a1a">Donation ID</th><th style="color:#1a1a1a">Donor</th><th style="color:#1a1a1a">Address</th><th style="color:#1a1a1a">Preferred Pick-Up Date</th><th style="color:#1a1a1a">Items</th><th style="color:#1a1a1a">ACTIONS</th>
 </tr></thead><tbody>
@@ -2275,7 +2412,7 @@ function renderInventoryAudit(c) {
 // ═══════════════════════════════════════════════════════════
 function renderCircularEconomy(c) {
   c.innerHTML = `
-<div style="margin-bottom:20px"> <div style="font-family:'Poppins',sans-serif;font-size:13px;color:#555;margin-bottom:8px;font-weight:500">Date Range</div> <div style="display:flex;gap:16px;align-items:center;width:100%;margin-bottom:12px"> <div style="position:relative;flex:1"> <input type="date" id="circ-from" class="form-input form-input-sq" style="padding-right:38px;width:100%;box-sizing:border-box"/> <svg style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none" width="16" height="16" fill="none" stroke="#e8a020" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> </div> <div style="position:relative;flex:1"> <input type="date" id="circ-to" class="form-input form-input-sq" style="padding-right:38px;width:100%;box-sizing:border-box"/> <svg style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none" width="16" height="16" fill="none" stroke="#e8a020" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> </div> </div> <div style="display:flex;gap:16px"> <button onclick="applyCircularFilters()" style="flex:1;background:#e8a020;color:#fff;border:none;border-radius:10px;padding:13px 0;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer">Apply Filters</button> <button onclick="exportCircularReport()" style="flex:1;background:#e8a020;color:#fff;border:none;border-radius:10px;padding:13px 0;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer">Export Report</button> </div>
+<div style="margin-bottom:20px"> <div style="font-family:'Poppins',sans-serif;font-size:13px;color:#555;margin-bottom:8px;font-weight:500">Date Range</div> <div style="display:flex;gap:16px;align-items:center;width:100%;margin-bottom:12px"> <div style="flex:1"> <input type="date" id="circ-from" class="form-input form-input-sq" style="width:100%;box-sizing:border-box"/> </div> <div style="flex:1"> <input type="date" id="circ-to" class="form-input form-input-sq" style="width:100%;box-sizing:border-box"/> </div> </div> <div style="display:flex;gap:16px"> <button onclick="applyCircularFilters()" style="flex:1;background:#e8a020;color:#fff;border:none;border-radius:10px;padding:13px 0;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer">Apply Filters</button> <button onclick="exportCircularReport()" style="flex:1;background:#e8a020;color:#fff;border:none;border-radius:10px;padding:13px 0;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer">Export Report</button> </div>
 </div> <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px"> <!-- Biodegradability Score Distribution --> <div class="_chart-card"> <div class="_jsb-start"> <div> <div class="_fw6-1a">Biodegradability Score Distribution</div> <div class="_s11-aaa">Frequency histogram · ML-verified scores</div> </div> <span style="background:#e8f5ee;color:#4a7c59;border-radius:20px;padding:3px 10px;font-size:10px;font-family:'Poppins',sans-serif;font-weight:600">ML-Verified</span> </div> <canvas id="bio-chart" height="160"></canvas> <div style="display:flex;gap:16px;margin-top:10px;flex-wrap:wrap"> <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:2px;background:#c0410e"></div><span class="_s11-888">Low (&lt;40%)</span></div> <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:2px;background:#e8a020"></div><span class="_s11-888">Mid (40–70%)</span></div> <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:2px;background:#4a7c59"></div><span class="_s11-888">High (&gt;70%)</span></div> </div> </div> <!-- Donation Volume by NCR City --> <div class="_chart-card"> <div class="_jsb-start"> <div> <div class="_fw6-1a">Donation Volume by NCR City</div> <div class="_s11-aaa">Stacked by fiber category · horizontal</div> </div> <span style="background:#fff3e0;color:#e8a020;border-radius:20px;padding:3px 10px;font-size:10px;font-family:'Poppins',sans-serif;font-weight:600">Freq. Chart</span> </div> <canvas id="city-chart" height="160"></canvas> <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
 ${[['#c0410e','Denim'],['#e8a020','Cotton'],['#4a7c59','Silk'],['#3d6fa0','Linen'],['#9b59b6','Other']].map(([col,lbl])=>`<div style="display:flex;align-items:center;gap:4px"><div style="width:10px;height:10px;border-radius:2px;background:${col}"></div><span class="_s11-888">${lbl}</span></div>`).join('')}
 </div> </div> <!-- Top 20 Brands by Donation Volume --> <div class="_chart-card"> <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px"> <div class="_fw6-1a">Top 20 Brands by Donation Volume</div> <span style="background:#fce8e0;color:#c0410e;border-radius:20px;padding:3px 10px;font-size:10px;font-family:'Poppins',sans-serif;font-weight:600">ML-Scraped</span> </div> <div id="brands-list" style="display:flex;flex-direction:column;gap:8px"></div> </div> <!-- Donation Decisions per NCR City --> <div class="_chart-card"> <div class="_jsb-start"> <div> <div class="_fw6-1a">Donation Decisions per NCR City</div> <div class="_s11-aaa">Accepted · Rejected · Flagged · Pending</div> </div> <span style="background:#e8f0fe;color:#3d6fa0;border-radius:20px;padding:3px 10px;font-size:10px;font-family:'Poppins',sans-serif;font-weight:600">Decision Flow</span> </div> <canvas id="decision-chart" height="160"></canvas> <div style="display:flex;gap:12px;margin-top:10px"> <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:2px;background:#4a7c59"></div><span class="_s11-888">Accepted</span></div> <div style="display:flex;align-items:center;gap:5px"><div style="width:10px;height:10px;border-radius:2px;background:#c0410e"></div><span class="_s11-888">Rejected</span></div> </div> </div>
@@ -2478,7 +2615,7 @@ ${f}<span onclick="tuabEditRemoveFiber('${f}')" style="cursor:pointer;font-size:
   c.innerHTML = `
 <div style="background:#fff;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)"> <!-- Profile Photo --> <div style="padding:22px 28px"> <div style="font-family:'Poppins',sans-serif;font-size:13px;color:#888;margin-bottom:14px;font-weight:500">Profile Photo</div> <div style="display:flex;align-items:center;gap:16px"> <div style="width:60px;height:60px;border-radius:50%;background:#f0e8d8;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:#c0410e">KK</div> <button style="border:1.5px solid #ccc;background:#fff;border-radius:20px;padding:6px 18px;font-size:13px;font-family:'Poppins',sans-serif;cursor:pointer;color:#555">Choose file</button> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Personal Information --> <div style="padding:22px 28px"> <div class="_form-sec-hdr">Personal Information</div> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Business Name</label> <input id="tpe-biz" class="form-input form-input-sq" value="${u.businessName}"/> </div> <div class="field-group"> <label class="form-label-upper">Description</label> <input id="tpe-desc" class="form-input form-input-sq" value="${u.description.slice(0,80)}…"/> </div> </div> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Social/Website Link</label> <input id="tpe-web" class="form-input form-input-sq" value="${u.website}"/> </div> <div class="field-group" style="position:relative"> <label class="form-label-upper">Target Fiber Types</label> <div id="tpe-fiber-box" onclick="document.getElementById('tpe-fiber-input').focus()" style="border:1.5px solid var(--border);border-radius:8px;padding:6px 10px;background:#fff;cursor:text;min-height:40px;display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:4px"> <div id="tpe-fiber-tags" style="display:contents">${fiberTagsHTML()}</div> <input id="tpe-fiber-input" placeholder="Add fiber…" autocomplete="off"
 style="border:none;outline:none;font-family:'Poppins',sans-serif;font-size:13px;color:#333;background:transparent;min-width:80px;flex:1;padding:0"
-oninput="tuabEditFiberSearch(this.value)" onkeydown="tuabEditFiberKeydown(event)"/> </div> <div id="tpe-fiber-sug" style="display:none;position:absolute;left:0;right:0;top:calc(100% + 2px);background:#fff;border:1.5px solid var(--border);border-radius:8px;z-index:400;box-shadow:0 8px 24px rgba(0,0,0,.12);max-height:160px;overflow-y:auto"></div> </div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Operational Status row --> <div style="padding:22px 28px"> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Max Distance</label> <input id="tpe-maxkm" class="form-input form-input-sq" type="number" value="${u.maxDistance}"/> </div> <div class="field-group"> <label class="form-label-upper">Operational Status</label> <select id="tpe-status" class="form-select"> <option ${u.operationalStatus==='Active'?'selected':''}>Active</option> <option ${u.operationalStatus==='Inactive'?'selected':''}>Inactive</option> <option ${u.operationalStatus==='On Hold'?'selected':''}>On Hold</option> </select> </div> </div> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Barangay</label> <input id="tpe-brgy" class="form-input form-input-sq" value="${u.barangay}"/> </div> <div class="field-group"> <label class="form-label-upper">City</label> <input id="tpe-city" class="form-input form-input-sq" value="${u.city}"/> </div> </div> <div class="field-group" style="margin-bottom:14px"> <label class="form-label-upper">Address</label> <div class="ac-wrap"><div class="loc-input-wrap"> <input id="tpe-addr" class="form-input form-input-sq" value="${u.address}" oninput="nominatimSearch(this.value,'tpe-ac','tpe-lat','tpe-lng','tpe-addr')" style="padding-right:36px"/> <button class="loc-pin-btn" onclick="openPickerFor('tpe-addr','tpe-lat','tpe-lng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button> </div><div id="tpe-ac" class="address-autocomplete hidden"></div> <input type="hidden" id="tpe-lat" value="${u.lat}"/><input type="hidden" id="tpe-lng" value="${u.lng}"/></div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Contact Number row --> <div style="padding:22px 28px"> <div class="field-group" style="margin-bottom:0"> <label class="form-label-upper">Contact Number</label> <div style="display:grid;grid-template-columns:60px 1fr;gap:8px;margin-top:4px"> <input class="form-input form-input-sq" value="+63" readonly/> <input id="tpe-contact" class="form-input form-input-sq" value="${u.contact}"/> </div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Password + 2FA + Actions --> <div style="padding:22px 28px"> <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px"> <div class="field-group"> <label class="form-label-upper">New Password (leave blank to keep current)</label> <input id="tpe-pw" class="form-input form-input-sq" type="password"/> </div> <div class="field-group"> <label class="form-label-upper">Confirm Password</label> <input id="tpe-cpw" class="form-input form-input-sq" type="password"/> </div> </div> <button id="tpe-unsub-btn" onclick="tuabStageUnsubscribe()" style="background:#fff8e8;border:1.5px solid #f5d898;color:#e8a020;border-radius:8px;padding:11px 22px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer;margin-bottom:16px;width:auto">Unsubscribe from Premium Features</button> <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px"> <div id="tpe-2fa-toggle" onclick="tuabToggle2FA()" style="width:44px;height:24px;border-radius:12px;background:${u.twoFA?'#e8a020':'#ccc'};cursor:pointer;position:relative;transition:background .2s;flex-shrink:0"> <div style="position:absolute;top:3px;${u.twoFA?'right:3px':'left:3px'};width:18px;height:18px;border-radius:50%;background:#fff;transition:all .2s"></div> </div> <span style="font-family:'Poppins',sans-serif;font-size:14px;color:#333">Two-Factor Authentication</span> </div> <button onclick="saveTuabProfile()" style="background:#e8a020;color:#fff;border:none;border-radius:8px;padding:12px 32px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer">Save Changes</button> </div> </div>`;
+oninput="tuabEditFiberSearch(this.value)" onkeydown="tuabEditFiberKeydown(event)"/> </div> <div id="tpe-fiber-sug" style="display:none;position:absolute;left:0;right:0;top:calc(100% + 2px);background:#fff;border:1.5px solid var(--border);border-radius:8px;z-index:400;box-shadow:0 8px 24px rgba(0,0,0,.12);max-height:160px;overflow-y:auto"></div> </div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Operational Status row --> <div style="padding:22px 28px"> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Max Distance</label> <input id="tpe-maxkm" class="form-input form-input-sq" type="number" value="${u.maxDistance}"/> </div> <div class="field-group"> <label class="form-label-upper">Operational Status</label> <select id="tpe-status" class="form-select"> <option ${u.operationalStatus==='Active'?'selected':''}>Active</option> <option ${u.operationalStatus==='Inactive'?'selected':''}>Inactive</option> <option ${u.operationalStatus==='On Hold'?'selected':''}>On Hold</option> </select> </div> </div> <div class="_g2"> <div class="field-group"> <label class="form-label-upper">Barangay</label> <input id="tpe-brgy" class="form-input form-input-sq" value="${u.barangay}"/> </div> <div class="field-group"> <label class="form-label-upper">City</label> <input id="tpe-city" class="form-input form-input-sq" value="${u.city}"/> </div> </div> <div class="field-group" style="margin-bottom:14px"> <label class="form-label-upper">Address</label> <div class="ac-wrap"><div class="loc-input-wrap"> <input id="tpe-addr" class="form-input form-input-sq" value="${u.address}" oninput="nominatimSearch(this.value,'tpe-ac','tpe-lat','tpe-lng','tpe-addr')" style="padding-right:36px"/> <button class="loc-pin-btn" onclick="openPickerFor('tpe-addr','tpe-lat','tpe-lng')"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></button> </div><div id="tpe-ac" class="address-autocomplete hidden"></div> <input type="hidden" id="tpe-lat" value="${u.lat}"/><input type="hidden" id="tpe-lng" value="${u.lng}"/></div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Contact Number row --> <div style="padding:22px 28px"> <div class="field-group" style="margin-bottom:0"> <label class="form-label-upper">Contact Number</label> <div style="display:grid;grid-template-columns:60px 1fr;gap:8px;margin-top:4px"> <input class="form-input form-input-sq" value="+63" readonly/> <input id="tpe-contact" class="form-input form-input-sq" value="${u.contact}"/> </div> </div> </div> <div style="height:1px;background:#f0ede8"></div> <!-- Password + 2FA + Actions --> <div style="padding:22px 28px"> <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px"> <div class="field-group"> <label class="form-label-upper">New Password (leave blank to keep current)</label> <input id="tpe-pw" class="form-input form-input-sq" type="password"/> </div> <div class="field-group"> <label class="form-label-upper">Confirm Password</label> <input id="tpe-cpw" class="form-input form-input-sq" type="password"/> </div> </div> <button id="tpe-unsub-btn" onclick="tuabStageUnsubscribe()" style="background:#fff8e8;border:1.5px solid #f5d898;color:#e8a020;border-radius:8px;padding:11px 22px;font-size:13px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer;margin-bottom:16px;width:auto">Unsubscribe from Premium Features</button> <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px"> <div id="tpe-2fa-toggle" onclick="tuabToggle2FA()" style="width:44px;height:24px;border-radius:12px;background:${u.twoFA?'#e8a020':'#ccc'};cursor:pointer;position:relative;transition:background .2s;flex-shrink:0"> <div style="position:absolute;top:3px;${u.twoFA?'right:3px':'left:3px'};width:18px;height:18px;border-radius:50%;background:#fff;transition:all .2s"></div> </div> <span style="font-family:'Poppins',sans-serif;font-size:14px;color:#333">Two-Factor Authentication</span> </div> <div style="display:flex;gap:12px"><button class="btn btn-primary btn-primary-sq" onclick="saveTuabProfile()">Save Changes</button><button class="btn btn-outline" onclick="tuabNavigate('profile')">Cancel</button></div></div></div>`;
 
   ADDRESS_FIELD_MAP['tpe-addr'] = { city:'tpe-city', barangay:'tpe-brgy', postal:null };
 }
@@ -3037,6 +3174,13 @@ submitFlag = function(){
 const _origDoLogin = doLogin;
 doLogin = function(){
   const email = (document.getElementById('login-email')?.value||'').trim().toLowerCase();
+
+  // Inactive account check
+  if(email === 'kk@gmail.co'){
+    document.getElementById('inactive-account-modal')?.classList.remove('hidden');
+    return;
+  }
+
   const userRec = WeaveDB.findOne('users', u=>u.email===email);
   if(userRec && userRec.twoFA){
     window._pendingLoginEmail = email;
@@ -3169,6 +3313,29 @@ function showAlreadySubscribedModal() {
     <div style="font-family:'Poppins',sans-serif;font-weight:600;font-size:17px;color:#1a1a1a;margin-bottom:8px">Already Subscribed</div>
     <p style="font-family:'Poppins',sans-serif;font-size:13px;color:#888;line-height:1.7;margin-bottom:24px">You are already subscribed to Premium. This page is for simulation purposes only — no actual payment will be processed.</p>
     <button onclick="document.getElementById('already-subscribed-modal').classList.add('hidden')" style="background:#e8a020;color:#fff;border:none;border-radius:30px;padding:11px 36px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer" onmouseover="this.style.background='#c8881a'" onmouseout="this.style.background='#e8a020'">Got it</button>
+  </div>
+</div>
+
+
+<!-- Inactive Account Modal -->
+<div id="inactive-account-modal" class="modal-overlay hidden">
+  <div style="background:#fff;border-radius:20px;padding:36px 40px 32px;width:440px;max-width:95vw;box-shadow:0 24px 80px rgba(0,0,0,.28);text-align:center">
+    <div style="width:60px;height:60px;border-radius:50%;background:#fdecea;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
+      <svg width="28" height="28" fill="none" stroke="#d94f3d" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:18px;color:#1a1a1a;margin-bottom:10px">Account Not Active</div>
+    <p style="font-family:'Poppins',sans-serif;font-size:13px;color:#666;line-height:1.7;margin-bottom:24px">
+      Your account is currently inactive and cannot be used to log in.
+    </p>
+    <button onclick="document.getElementById('inactive-account-modal').classList.add('hidden')"
+      style="background:#d94f3d;color:#fff;border:none;border-radius:30px;padding:12px 40px;font-size:14px;font-family:'Poppins',sans-serif;font-weight:600;cursor:pointer"
+      onmouseover="this.style.background='#b83d2d'" onmouseout="this.style.background='#d94f3d'">
+      OK, Got it
+    </button>
   </div>
 </div>
 
